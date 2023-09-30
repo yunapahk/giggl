@@ -12,18 +12,18 @@ Comedy search engine with features including comedians podcasts and tour dates.
 
 ## Models
 
-### Bits:
+### Bits
 - Name of Comedian
 - Description
 
-### Comedians:
+### Comedians
 - Name
 
-### Podcasts:
+### Podcasts
 - Name
 - Comedians
 
-### Tour Dates:
+### Tour Dates
 - Comedian
 - Name of Tour
 - Dates
