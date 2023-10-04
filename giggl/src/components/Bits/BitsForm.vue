@@ -2,7 +2,6 @@
 import api from '@/services/api.js';
 
 export default {
-  // ...
   methods: {
     submitForm() {
       if (this.isEditing) {
@@ -18,6 +17,5 @@ export default {
       }
     }
   }
-  // ...
 };
 </script>

@@ -1,10 +1,9 @@
-import BitsView from '@/components/Bits/BitsView.vue';
+import BitsList from '@/components/Bits/BitsList.vue';
+import BitsDetail from '@/components/Bits/BitsDetail.vue';
 
-export default [
-  {
-    path: '/bits',
-    name: 'BitsView',
-    component: BitsView
-  },
+const bitsRoutes = [
+  { path: '/bits', component: BitsList },
+  { path: '/bits/:id', component: BitsDetail, props: true }
 ];
 
+export default bitsRoutes;
