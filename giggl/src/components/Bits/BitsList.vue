@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Display bits as cards -->
-    <div v-for="bit in bits" :key="bit.id" class="bit-card" @click="goToBitDetail(bit.id)">
+    <div v-for="bit in bits" :key="bit.id" class="bit-card" @click="goToBitEdit(bit.id)">
       <h3>{{ bit.comedian }}</h3>
       <p>{{ bit.description }}</p>
     </div>
@@ -9,7 +9,6 @@
 </template>
 
 <script>
-
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { getBits } from '@/services/api.js';
@@ -21,17 +20,17 @@ export default {
 
     onMounted(() => {
       getBits().then(response => {
-        bits.value = response.data; 
+        bits.value = response.data;
       });
     });
 
-    const goToBitDetail = (id) => {
-      router.push(`/bits/${id}`);
+    const goToBitEdit = (id) => {
+      router.push(`/bits/${id}/edit`);
     };
 
     return {
       bits,
-      goToBitDetail
+      goToBitEdit
     };
   }
 };

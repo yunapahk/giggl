@@ -1,8 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import bitsRoutes from './routes/bits.js';
+import comediansRoutes from './routes/comedians.js';
 
 const routes = [
-  ...bitsRoutes
+  ...bitsRoutes,
+  ...comediansRoutes
 ];
 
 const router = createRouter({

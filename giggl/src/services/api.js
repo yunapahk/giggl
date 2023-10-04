@@ -30,10 +30,37 @@ export const deleteBit = (id) => {
   return apiClient.delete(`bits/${id}`);
 };
 
+// Comedians related API calls
+export const getComedians = () => {
+  return apiClient.get('comedians/');
+};
+
+export const getComedian = (id) => {
+  return apiClient.get(`comedians/${id}`);
+};
+
+export const addComedian = (data) => {
+  return apiClient.post('comedians/', data);
+};
+
+export const updateComedian = (id, data) => {
+  return apiClient.put(`comedians/${id}/edit`, data);
+};
+
+export const deleteComedian = (id) => {
+  return apiClient.delete(`comedians/${id}`);
+};
+
 export default {
   getBits,
   getBit,
   addBit,
   updateBit,
   deleteBit,
+
+  getComedians,
+  getComedian,
+  addComedian,
+  updateComedian,
+  deleteComedian
 };

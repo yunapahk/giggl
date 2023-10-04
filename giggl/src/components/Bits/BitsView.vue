@@ -1,38 +1,31 @@
 <template>
-  <div>
-    <BitsForm :bitToEdit="selectedBit" @refreshBits="fetchBits" />
-    <BitsList @editBit="editBit" @refreshBits="fetchBits" />
-  </div>
-</template>
-
-<script>
-import BitsForm from './BitsForm.vue';
-import BitsList from './BitsList.vue';
-import { getBits } from '@/services/api.js';
-
-export default {
-  components: {
-    BitsForm,
-    BitsList
-  },
-  data() {
-    return {
-      selectedBit: null
-    };
-  },
-  methods: {
-    fetchBits() {
-      getBits().then(response => {
-      }).catch(error => {
-        console.error("Error fetching bits:", error);
-      });
+    <div>
+      <BitsForm :bitToEdit="selectedBit.id" @refreshBits="fetchBits" />
+      <BitsList @editBit="editBit" @refreshBits="fetchBits" />
+    </div>
+  </template>
+  
+  <script>
+  import BitsForm from './BitsForm.vue';
+  import BitsList from './BitsList.vue';
+  
+  export default {
+    components: {
+      BitsForm,
+      BitsList
     },
-    editBit(bit) {
-      this.selectedBit = bit;
+    data() {
+      return {
+        selectedBit: null
+      };
+    },
+    methods: {
+      fetchBits() {
+      },
+      editBit(bit) {
+        this.selectedBit = bit;
+      }
     }
-  },
-  mounted() {
-    this.fetchBits();
   }
-}
-</script>
+  </script>
+  

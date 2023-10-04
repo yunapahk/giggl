@@ -3,9 +3,9 @@
     <header>
       <nav>
         <router-link to="/bits">Bits</router-link>
-        <!-- <router-link to="/comedians">Comedians</router-link>
+        <router-link to="/comedians">Comedians</router-link>
         <router-link to="/podcasts">Podcasts</router-link>
-        <router-link to="/tourdates">Tour Dates</router-link> -->
+        <router-link to="/tourdates">Tour Dates</router-link>
       </nav>
     </header>
 
