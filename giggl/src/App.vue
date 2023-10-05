@@ -1,16 +1,29 @@
 <template>
-  <div>
+  <v-app>  
     <header>
-      <nav>
-        <router-link to="/bits">Bits</router-link>
-        <router-link to="/comedians">Comedians</router-link>
-        <router-link to="/podcasts">Podcasts</router-link>
-        <router-link to="/tourdates">Tour Dates</router-link>
-      </nav>
-    </header>
+      <v-app-bar :elevation="2">
+        <v-spacer></v-spacer> <!-- This pushes the content to the center -->
 
-    <router-view></router-view>
-  </div>
+        <router-link :to="{ name: 'dashboard' }">
+          <v-btn text>Dashboard</v-btn>
+        </router-link>
+        <router-link :to="{ name: 'bits' }">
+          <v-btn text>Bits</v-btn>
+        </router-link>
+        <router-link :to="{ name: 'comedians' }">
+          <v-btn text>Comedians</v-btn>
+        </router-link>
+        <router-link :to="{ name: 'podcasts' }">
+          <v-btn text>Podcasts</v-btn>
+        </router-link>
+        <router-link :to="{ name: 'tourdates' }">
+          <v-btn text>Tour Dates</v-btn>
+        </router-link>
+
+        <v-spacer></v-spacer> <!-- Keeps the buttons centered -->
+      </v-app-bar>
+    </header>
+  </v-app>
 </template>
 
 <script>

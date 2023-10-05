@@ -1,3 +1,6 @@
+// Import Dashboard Component
+import Dashboard from '@/components/Dashboard.vue';
+
 // Import Bits Components
 import BitsList from '@/components/Bits/BitsList.vue';
 import BitsDetail from '@/components/Bits/BitsDetail.vue';
@@ -20,27 +23,30 @@ import TourdatesForm from '@/components/Tourdates/TourdatesForm.vue';
 
 // Routes
 export default [
+    // Dashboard
+    { path: '/dashboard', name: 'dashboard', component: Dashboard },
+
     // Bits
     { path: '/bits/add', component: BitsForm },               
     { path: '/bits/:id/edit/', component: BitsForm, props: true }, 
     { path: '/bits/:id', component: BitsDetail, props: true },   
-    { path: '/bits', component: BitsList },
+    { path: '/bits', name: 'bits', component: BitsList },
     
     // Comedians
     { path: '/comedians/add', component: ComediansForm },               
     { path: '/comedians/:id/edit/', component: ComediansForm, props: true }, 
     { path: '/comedians/:id', component: ComediansDetail, props: true },   
-    { path: '/comedians', component: ComediansList },
+    { path: '/comedians', name: 'comedians', component: ComediansList },
 
     // Podcasts
     { path: '/podcasts/add', component: PodcastsForm },               
     { path: '/podcasts/:id/edit/', component: PodcastsForm, props: true }, 
     { path: '/podcasts/:id', component: PodcastsDetail, props: true },   
-    { path: '/podcasts', component: PodcastsList },   
+    { path: '/podcasts', name: 'podcasts', component: PodcastsList },   
 
     // Tourdates
     { path: '/tourdates/add', component: TourdatesForm },               
     { path: '/tourdates/:id/edit/', component: TourdatesForm, props: true }, 
     { path: '/tourdates/:id', component: TourdatesDetail, props: true },   
-    { path: '/tourdates', component: TourdatesList } 
+    { path: '/tourdates', name: 'tourdates', component: TourdatesList } 
   ]
