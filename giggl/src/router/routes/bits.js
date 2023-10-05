@@ -4,7 +4,7 @@ import BitsForm from '@/components/Bits/BitsForm.vue';
 
 const bitsRoutes = [
   { path: '/bits/add', component: BitsForm },               
-  { path: '/bits/:id/edit', component: BitsForm, props: true }, 
+  { path: '/bits/:id/edit/', component: BitsForm, props: true }, 
   { path: '/bits/:id', component: BitsDetail, props: true },   
   { path: '/bits', component: BitsList }                       
 ]

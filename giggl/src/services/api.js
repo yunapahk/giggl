@@ -23,7 +23,7 @@ export const addBit = (data) => {
 };
 
 export const updateBit = (id, data) => {
-  return apiClient.put(`bits/${id}`, data);
+  return apiClient.put(`bits/${id}/`, data);
 };
 
 export const deleteBit = (id) => {
@@ -44,7 +44,7 @@ export const addComedian = (data) => {
 };
 
 export const updateComedian = (id, data) => {
-  return apiClient.put(`comedians/${id}/edit`, data);
+  return apiClient.put(`comedians/${id}/`, data);
 };
 
 export const deleteComedian = (id) => {

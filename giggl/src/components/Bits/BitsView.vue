@@ -1,31 +1,20 @@
 <template>
-    <div>
-      <BitsForm :bitToEdit="selectedBit.id" @refreshBits="fetchBits" />
-      <BitsList @editBit="editBit" @refreshBits="fetchBits" />
-    </div>
-  </template>
-  
-  <script>
-  import BitsForm from './BitsForm.vue';
-  import BitsList from './BitsList.vue';
-  
-  export default {
-    components: {
-      BitsForm,
-      BitsList
-    },
-    data() {
-      return {
-        selectedBit: null
-      };
-    },
-    methods: {
-      fetchBits() {
-      },
-      editBit(bit) {
-        this.selectedBit = bit;
-      }
+  <div>
+    <BitsList @viewBit="viewBit" />
+  </div>
+</template>
+
+<script>
+import BitsList from './BitsList.vue';
+
+export default {
+  components: {
+    BitsList
+  },
+  methods: {
+    viewBit(bit) {
+      this.$router.push(`/bits/${bit.id}`);
     }
   }
-  </script>
-  
+}
+</script>

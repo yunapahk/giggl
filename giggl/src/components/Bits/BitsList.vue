@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Display bits as cards -->
-    <div v-for="bit in bits" :key="bit.id" class="bit-card" @click="goToBitEdit(bit.id)">
+    <div v-for="bit in bits" :key="bit.id" class="bit-card" @click="goToBitDetail(bit.id)">
       <h3>{{ bit.comedian }}</h3>
       <p>{{ bit.description }}</p>
     </div>
@@ -24,13 +24,13 @@ export default {
       });
     });
 
-    const goToBitEdit = (id) => {
-      router.push(`/bits/${id}/edit`);
+    const goToBitDetail = (id) => {
+      router.push(`/bits/${id}`);
     };
 
     return {
       bits,
-      goToBitEdit
+      goToBitDetail
     };
   }
 };
