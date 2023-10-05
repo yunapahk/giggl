@@ -23,6 +23,9 @@
         <v-spacer></v-spacer> <!-- Keeps the buttons centered -->
       </v-app-bar>
     </header>
+    <div class="content">
+      <router-view></router-view>
+    </div>
   </v-app>
 </template>
 

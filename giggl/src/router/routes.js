@@ -24,7 +24,7 @@ import TourdatesForm from '@/components/Tourdates/TourdatesForm.vue';
 // Routes
 export default [
     // Dashboard
-    { path: '/dashboard', name: 'dashboard', component: Dashboard },
+    { path: '/', name: 'dashboard', component: Dashboard },
 
     // Bits
     { path: '/bits/add', component: BitsForm },               
