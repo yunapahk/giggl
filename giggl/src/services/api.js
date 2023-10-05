@@ -51,7 +51,7 @@ export const deleteComedian = (id) => {
   return apiClient.delete(`comedians/${id}`);
 };
 
-// Comedians related API calls
+// Podcasts related API calls
 export const getPodcasts = () => {
   return apiClient.get('podcasts/');
 };
@@ -72,6 +72,27 @@ export const deletePodcast = (id) => {
   return apiClient.delete(`podcasts/${id}`);
 };
 
+// Tourdates related API calls
+export const getTourdates = () => {
+  return apiClient.get('tourdates/');
+};
+
+export const getTourdate = (id) => {
+  return apiClient.get(`tourdates/${id}`);
+};
+
+export const addTourdate = (data) => {
+  return apiClient.post('tourdates/', data);
+};
+
+export const updateTourdate = (id, data) => {
+  return apiClient.put(`tourdates/${id}/`, data);
+};
+
+export const deleteTourdate = (id) => {
+  return apiClient.delete(`tourdates/${id}`);
+};
+
 export default {
   getBits,
   getBit,
@@ -90,4 +111,10 @@ export default {
   addPodcast,
   updatePodcast,
   deletePodcast,
+
+  getTourdates,
+  getTourdate,
+  addTourdate,
+  updateTourdate,
+  deleteTourdate,
 };

@@ -5,6 +5,7 @@
 </template>
 
 <script>
+
 import BitsList from './BitsList.vue';
 
 export default {
