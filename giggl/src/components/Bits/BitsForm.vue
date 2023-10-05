@@ -9,7 +9,7 @@
 <script>
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import { getBit, updateBit } from '@/services/api.js';
+import api from '@/services/api.js';
 
 export default {
   props: ['id'],
@@ -23,22 +23,18 @@ export default {
   },
   mounted() {
     if (this.id) {
-      getBit(this.id).then(response => {
+      api.getBit(this.id).then(response => {
         this.bit = response.data;
       });
     }
   },
   methods: {
     submitForm() {
-      updateBit(this.id, this.bit).then(() => {
+      api.updateBit(this.id, this.bit).then(() => {
         this.$emit('refreshBits');
         this.$router.push('/');
       });
     }
-  },
-  setup() {
-    const router = useRouter();
-    return { router };
   }
 };
 </script>

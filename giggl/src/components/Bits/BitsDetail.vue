@@ -9,7 +9,7 @@
 
 <script>
 import { useRouter } from 'vue-router';
-import { getBit, deleteBit as apiDeleteBit } from '@/services/api.js';
+import api from '@/services/api.js';
 
 export default {
   props: ['id'],
@@ -21,9 +21,9 @@ export default {
   mounted() {
     this.fetchBitDetail();
   },
-  methods: {
+    methods: {
     fetchBitDetail() {
-      getBit(this.id).then(response => {
+      api.getBit(this.id).then(response => {
         this.bit = response.data;
       }).catch(error => {
         console.error("Error fetching bit details:", error);
@@ -33,7 +33,7 @@ export default {
       this.$router.push(`/bits/${this.id}/edit`);
     },
     deleteBit() {
-      apiDeleteBit(this.id).then(() => {
+      api.deleteBit(this.id).then(() => {
         // After successful deletion, navigate to bits list
         this.$router.push('/bits');
       }).catch(error => {

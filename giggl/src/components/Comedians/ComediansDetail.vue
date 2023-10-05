@@ -8,7 +8,7 @@
 
 <script>
 import { useRouter } from 'vue-router';
-import { getComedian, deleteComedian as apiDeleteComedian } from '@/services/api.js';
+import api from '@/services/api.js';
 
 export default {
   props: ['id'],
@@ -17,12 +17,9 @@ export default {
       comedian: null
     };
   },
-  mounted() {
-    this.fetchComedianDetail();
-  },
   methods: {
     fetchComedianDetail() {
-      getComedian(this.id).then(response => {
+      api.getComedian(this.id).then(response => {
         this.comedian = response.data;
       }).catch(error => {
         console.error("Error fetching comedian details:", error);
@@ -32,8 +29,7 @@ export default {
       this.$router.push(`/comedians/${this.id}/edit`);
     },
     deleteComedian() {
-      apiDeleteComedian(this.id).then(() => {
-        // After successful deletion, navigate to comedians list
+      api.deleteComedian(this.id).then(() => {
         this.$router.push('/comedians');
       }).catch(error => {
         console.error("Error deleting comedian:", error);

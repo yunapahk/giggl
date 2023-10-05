@@ -11,7 +11,7 @@
 <script>
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import { getBits } from '@/services/api.js';
+import api from '@/services/api.js';
 
 export default {
   setup() {
@@ -19,7 +19,7 @@ export default {
     const router = useRouter();
 
     onMounted(() => {
-      getBits().then(response => {
+      api.getBits().then(response => {
         bits.value = response.data;
       });
     });

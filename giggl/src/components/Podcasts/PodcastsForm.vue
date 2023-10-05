@@ -6,39 +6,39 @@
     </div>
   </template>
   
-  <script>
-  import { ref, onMounted } from 'vue';
-  import { useRouter } from 'vue-router';
-  import { getPodcast, updatePodcast } from '@/services/api.js';
-  
-  export default {
-    props: ['id'],
-    data() {
-      return {
-        podcast: {
-          name: '',
-          comedians: '',
-        }
-      };
-    },
-    mounted() {
-      if (this.id) {
-        gePodcast(this.id).then(response => {
-          this.podcast = response.data;
-        });
+<script>
+import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+import api from '@/services/api.js'; 
+
+export default {
+  props: ['id'],
+  data() {
+    return {
+      podcast: {
+        name: '',
+        comedians: '',
       }
-    },
-    methods: {
-      submitForm() {
-        updatePodcast(this.id, this.podcast).then(() => {
-          this.$emit('refreshPodcast');
-          this.$router.push('/');
-        });
-      }
-    },
-    setup() {
-      const router = useRouter();
-      return { router };
+    };
+  },
+  mounted() {
+    if (this.id) {
+      api.getPodcast(this.id).then(response => { 
+        this.podcast = response.data;
+      });
     }
-  };
-  </script>
+  },
+  methods: {
+    submitForm() {
+      api.updatePodcast(this.id, this.podcast).then(() => { 
+        this.$emit('refreshPodcast');
+        this.$router.push('/');
+      });
+    }
+  },
+  setup() {
+    const router = useRouter();
+    return { router };
+  }
+};
+</script>

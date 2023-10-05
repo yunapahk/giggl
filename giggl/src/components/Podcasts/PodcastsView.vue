@@ -1,21 +1,15 @@
 <template>
-    <div>
-      <PodcastsList @viewPodcast="viewPodcast" />
-    </div>
-  </template>
-  
-  <script>
-  import PodcastsList from './PodcastsList.vue';
-  
-  export default {
-    components: {
-      PodcastsList
-    },
-    methods: {
-      viewPodcast(podcast) {
-        this.$router.push(`/podcasts/${podcast.id}`);
-      }
-    }
+  <div>
+    <PodcastsList />
+  </div>
+</template>
+
+<script>
+import PodcastsList from './PodcastsList.vue';
+
+export default {
+  components: {
+    PodcastsList
   }
-  </script>
-  
+}
+</script>

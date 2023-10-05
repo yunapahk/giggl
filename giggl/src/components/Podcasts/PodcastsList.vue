@@ -6,37 +6,37 @@
         <p>{{ podcast.comedians }}</p>
       </div>
     </div>
-  </template>
+</template>
   
-  <script>
-  import { ref, onMounted } from 'vue';
-  import { useRouter } from 'vue-router';
-  import { getPodcasts } from '@/services/api.js';
-  
-  export default {
-    setup() {
-      const podcasts = ref([]);
-      const router = useRouter();
-  
-      onMounted(() => {
-        getPodcasts().then(response => {
-          podcasts.value = response.data;
-        });
+<script>
+import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+import api from '@/services/api.js'; 
+
+export default {
+  setup() {
+    const podcasts = ref([]);
+    const router = useRouter();
+
+    onMounted(() => {
+      api.getPodcasts().then(response => { 
+        podcasts.value = response.data;
       });
-  
-      const goToPodcastDetail = (id) => {
-        router.push(`/podcasts/${id}`);
-      };
-  
-      return {
-        podcasts,
-        goToPodcastDetail
-      };
-    }
-  };
-  </script>
-  
-  <style>
+    });
+
+    const goToPodcastDetail = (id) => {
+      router.push(`/podcasts/${id}`);
+    };
+
+    return {
+      podcasts,
+      goToPodcastDetail
+    };
+  }
+};
+</script>
+
+<style>
   .podcast-card {
     border: 1px solid #ccc;
     padding: 16px;

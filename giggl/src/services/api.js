@@ -1,120 +1,56 @@
 import axios from 'axios';
 
+// Backend URL setup
 const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'https://giggl-backend-d1dba8cb813e.herokuapp.com/';
 
+// Axios instance
 const apiClient = axios.create({
   baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 10000, 
+  timeout: 10000,
 });
 
-export const getBits = () => {
-  return apiClient.get('bits/');
-};
+const makeCrudApi = (type) => ({
+  getAll: () => apiClient.get(`${type}/`),
+  getOne: (id) => apiClient.get(`${type}/${id}`),
+  add: (data) => apiClient.post(`${type}/`, data),
+  update: (id, data) => apiClient.put(`${type}/${id}/`, data),
+  delete: (id) => apiClient.delete(`${type}/${id}`),
+});
 
-export const getBit = (id) => {
-  return apiClient.get(`bits/${id}`);
-};
-
-export const addBit = (data) => {
-  return apiClient.post('bits/', data);
-};
-
-export const updateBit = (id, data) => {
-  return apiClient.put(`bits/${id}/`, data);
-};
-
-export const deleteBit = (id) => {
-  return apiClient.delete(`bits/${id}`);
-};
-
-// Comedians related API calls
-export const getComedians = () => {
-  return apiClient.get('comedians/');
-};
-
-export const getComedian = (id) => {
-  return apiClient.get(`comedians/${id}`);
-};
-
-export const addComedian = (data) => {
-  return apiClient.post('comedians/', data);
-};
-
-export const updateComedian = (id, data) => {
-  return apiClient.put(`comedians/${id}/`, data);
-};
-
-export const deleteComedian = (id) => {
-  return apiClient.delete(`comedians/${id}`);
-};
-
-// Podcasts related API calls
-export const getPodcasts = () => {
-  return apiClient.get('podcasts/');
-};
-
-export const getPodcast = (id) => {
-  return apiClient.get(`podcasts/${id}`);
-};
-
-export const addPodcast = (data) => {
-  return apiClient.post('podcasts/', data);
-};
-
-export const updatePodcast = (id, data) => {
-  return apiClient.put(`podcasts/${id}/`, data);
-};
-
-export const deletePodcast = (id) => {
-  return apiClient.delete(`podcasts/${id}`);
-};
-
-// Tourdates related API calls
-export const getTourdates = () => {
-  return apiClient.get('tourdates/');
-};
-
-export const getTourdate = (id) => {
-  return apiClient.get(`tourdates/${id}`);
-};
-
-export const addTourdate = (data) => {
-  return apiClient.post('tourdates/', data);
-};
-
-export const updateTourdate = (id, data) => {
-  return apiClient.put(`tourdates/${id}/`, data);
-};
-
-export const deleteTourdate = (id) => {
-  return apiClient.delete(`tourdates/${id}`);
-};
+const bitsApi = makeCrudApi('bits');
+const comediansApi = makeCrudApi('comedians');
+const podcastsApi = makeCrudApi('podcasts');
+const tourdatesApi = makeCrudApi('tourdates');
 
 export default {
-  getBits,
-  getBit,
-  addBit,
-  updateBit,
-  deleteBit,
+  // For bits
+  getBits: bitsApi.getAll,
+  getBit: bitsApi.getOne,
+  addBit: bitsApi.add,
+  updateBit: bitsApi.update,
+  deleteBit: bitsApi.delete,
 
-  getComedians,
-  getComedian,
-  addComedian,
-  updateComedian,
-  deleteComedian,
+  // For comedians
+  getComedians: comediansApi.getAll,
+  getComedian: comediansApi.getOne,
+  addComedian: comediansApi.add,
+  updateComedian: comediansApi.update,
+  deleteComedian: comediansApi.delete,
 
-  getPodcasts,
-  getPodcast,
-  addPodcast,
-  updatePodcast,
-  deletePodcast,
+  // For podcasts
+  getPodcasts: podcastsApi.getAll,
+  getPodcast: podcastsApi.getOne,
+  addPodcast: podcastsApi.add,
+  updatePodcast: podcastsApi.update,
+  deletePodcast: podcastsApi.delete,
 
-  getTourdates,
-  getTourdate,
-  addTourdate,
-  updateTourdate,
-  deleteTourdate,
+  // For tourdates
+  getTourdates: tourdatesApi.getAll,
+  getTourdate: tourdatesApi.getOne,
+  addTourdate: tourdatesApi.add,
+  updateTourdate: tourdatesApi.update,
+  deleteTourdate: tourdatesApi.delete,
 };

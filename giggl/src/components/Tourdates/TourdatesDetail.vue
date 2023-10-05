@@ -11,7 +11,7 @@
 
 <script>
 import { useRouter } from 'vue-router';
-import { getTourdate, deleteTourdate as apiDeleteTourdate } from '@/services/api.js';
+import api from '@/services/api.js'; 
 
 export default {
   props: ['id'],
@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     fetchTourdateDetail() {
-      getTourdate(this.id).then(response => {
+      api.getTourdate(this.id).then(response => { 
         this.tourdate = response.data;
       }).catch(error => {
         console.error("Error fetching tourdate details:", error);
@@ -35,7 +35,7 @@ export default {
       this.$router.push(`/tourdates/${this.id}/edit`);
     },
     deleteTourdate() {
-      apiDeleteTourdate(this.id).then(() => {
+      api.deleteTourdate(this.id).then(() => {
         // After successful deletion, navigate to tourdates list
         this.$router.push('/tourdates');
       }).catch(error => {

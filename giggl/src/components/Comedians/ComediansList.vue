@@ -10,7 +10,7 @@
 <script>
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import { getComedians } from '@/services/api.js';
+import api from '@/services/api.js';  
 
 export default {
   setup() {
@@ -18,21 +18,22 @@ export default {
     const router = useRouter();
 
     onMounted(() => {
-      getComedians().then(response => {
+      api.getComedians().then(response => {  
         comedians.value = response.data;
       });
     });
 
+    // Assuming you have a method to navigate to comedian details
     const goToComedianDetail = (id) => {
-      router.push(`/comedians/${id}`);
+      router.push({ name: 'ComedianDetail', params: { id } });
     };
 
     return {
       comedians,
       goToComedianDetail
-    };
+    }
   }
-};
+}
 </script>
 
 <style>
