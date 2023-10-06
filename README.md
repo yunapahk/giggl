@@ -1,17 +1,16 @@
 ### Giggl
 [Deployed Frontend](google.com)
 
-[Deployed Backend](google.com)
+[Deployed Backend](https://giggl-backend-d1dba8cb813e.herokuapp.com/)
 
 [Trello Board](https://trello.com/invite/b/xYyOnwr0/ATTI8f7dcb8c3ad62cb3b70f0af151eec366A63335A2/giggl)
 
 
 ## Description
 Comedy search engine with features including comedians podcasts and tour dates.
+- Technologies used: Django, Python, Vite/Vue, spaCy, Elasticsearch, Google Cloud Platform
 
-
-## Models
-
+## Models 
 ### Bits
 - Name of Comedian
 - Description
@@ -46,10 +45,10 @@ _Show_
 
 ## UI Mock Up
 _Index_
-![Index](index.png)
+![Index](/readmepngs/index.png)
 
 _Create/Update_
-![Create](create.png)
+![Create](/readmepngs/create.png)
 
 # Endpoints
 ## Bits
@@ -83,6 +82,10 @@ _Create/Update_
 | POST   | /api/tour-dates       | Add a new tour date        |
 | GET    | /api/tour-dates/:id   | Retrieve a tour date by ID |
 
+## Understanding Vite/Vue
+![Vite/Vue](/giggl/readmepngs/filestructure.png)
+    
+![React/Vue](/giggl/readmepngs/vdiagram.png)
 
 ## ERD 
 ```mermaid
