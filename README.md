@@ -41,14 +41,14 @@ Comedy search engine with features including comedians podcasts and tour dates.
 ## Screenshots
 _Index_
 _Create_
-_Show_
+_Show_        
 
 ## UI Mock Up
 _Index_
-![Index](/readmepngs/index.png)
-
+![Index](/giggl/readmepngs/index.png)
+ 
 _Create/Update_
-![Create](/readmepngs/create.png)
+![Create](/giggl/readmepngs/create.png)
 
 # Endpoints
 ## Bits
@@ -82,7 +82,7 @@ _Create/Update_
 | POST   | /api/tour-dates       | Add a new tour date        |
 | GET    | /api/tour-dates/:id   | Retrieve a tour date by ID |
 
-## Understanding Vite/Vue
+## Understanding Vue
 ![Vite/Vue](/giggl/readmepngs/filestructure.png)
     
 ![React/Vue](/giggl/readmepngs/vdiagram.png)
@@ -90,10 +90,10 @@ _Create/Update_
 ## ERD 
 ```mermaid
 erDiagram
-    BIT ||--|| COMEDIANS : performed_by
-    PODCASTS ||--|{ COMEDIANS : features
-    TOUR-DATES ||--|{ COMEDIANS : performed_by
-    BIT {
+    BITS ||--|| COMEDIANS : performed_by
+    BITS ||--|{ PODCASTS : features_in
+    BITS ||--|{ TOUR-DATES : part_of
+    BITS {
         int id
         string description
         int comedianId FK
@@ -104,7 +104,8 @@ erDiagram
     }
     PODCASTS {
         int id
-        string name
+        string comedians
+        string name_of_podcast
     }
     TOUR-DATES {
         int id
@@ -112,4 +113,5 @@ erDiagram
         date dates
         string link_to_dates
     }
+
 
