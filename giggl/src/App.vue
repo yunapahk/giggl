@@ -3,6 +3,11 @@
     <header>
       <v-app-bar :elevation="2" class="thin-navbar">
         
+        <!-- Custom Hamburger Button for small screens using the burger emoji -->
+        <v-btn icon @click="drawer = !drawer" class="d-md-none burger-btn">
+          🍔
+        </v-btn>
+
         <!-- Home button on the left -->
         <router-link :to="{ name: 'dashboard' }">
           <v-btn color="white">
@@ -12,25 +17,64 @@
 
         <!-- Spacer to push the rest to the center -->
         <v-spacer></v-spacer>
-
-        <!-- Rest of the buttons -->
-        <router-link :to="{ name: 'bits' }">
-          <v-btn color="white" text>Bits</v-btn>
-        </router-link>
-        <router-link :to="{ name: 'comedians' }">
-          <v-btn color="white" text>Comedians</v-btn>
-        </router-link>
-        <router-link :to="{ name: 'podcasts' }">
-          <v-btn color="white" text>Podcasts</v-btn>
-        </router-link>
-        <router-link :to="{ name: 'tourdates' }">
-          <v-btn color="white" text>Tour Dates</v-btn>
-        </router-link>
+        
+        <!-- Rest of the buttons - Hidden on small screens -->
+        <div class="d-none d-md-flex">
+          <router-link :to="{ name: 'bits' }">
+            <v-btn color="white" text>Bits</v-btn>
+          </router-link>
+          <router-link :to="{ name: 'comedians' }">
+            <v-btn color="white" text>Comedians</v-btn>
+          </router-link>
+          <router-link :to="{ name: 'podcasts' }">
+            <v-btn color="white" text>Podcasts</v-btn>
+          </router-link>
+          <router-link :to="{ name: 'tourdates' }">
+            <v-btn color="white" text>Tour Dates</v-btn>
+          </router-link>
+        </div>
 
         <!-- Spacer to ensure the center alignment -->
         <v-spacer></v-spacer>
 
       </v-app-bar>
+      
+<!-- Navigation Drawer for mobile screens -->
+<v-navigation-drawer v-model="drawer" app temporary>
+    <v-list>
+        <v-list-item>
+            <v-list-item-content>
+                <router-link :to="{ name: 'bits' }">
+                    <v-btn color="white" text class="elevation-0 mt-2">Bits</v-btn>
+                </router-link>
+            </v-list-item-content>
+        </v-list-item>
+        <v-list-item>
+            <v-list-item-content>
+                <router-link :to="{ name: 'comedians' }">
+                    <v-btn color="white" text class="elevation-0 mt-2">Comedians</v-btn>
+                </router-link>
+            </v-list-item-content>
+        </v-list-item>
+        <v-list-item>
+            <v-list-item-content>
+                <router-link :to="{ name: 'podcasts' }">
+                    <v-btn color="white" text class="elevation-0 mt-2">Podcasts</v-btn>
+                </router-link>
+            </v-list-item-content>
+        </v-list-item>
+        <v-list-item>
+            <v-list-item-content>
+                <router-link :to="{ name: 'tourdates' }">
+                    <v-btn color="white" text class="elevation-0 mt-2">Tour Dates</v-btn>
+                </router-link>
+            </v-list-item-content>
+        </v-list-item>
+    </v-list>
+</v-navigation-drawer>
+
+
+
     </header>
     <div class="content">
       <router-view></router-view>
@@ -38,9 +82,14 @@
   </v-app>
 </template>
 
-
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      drawer: false
+    }
+  }
+}
 </script>
 
 <style scoped>
@@ -60,6 +109,10 @@ header {
 .v-btn {
   padding: 0px 50px 50px 60px;
 }
+.burger-btn {
+  margin-bottom: 8px;
+}
+
 
 router-link {
   text-decoration: none;
