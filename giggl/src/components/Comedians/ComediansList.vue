@@ -1,11 +1,12 @@
 <template>
-  <div>
+  <div class="cards-container">
     <!-- Display comedians as cards -->
     <div v-for="comedian in comedians" :key="comedian.id" class="comedian-card" @click="goToComedianDetail(comedian.id)">
       <h1>{{ comedian.name }}</h1>
     </div>
   </div>
 </template>
+
 
 <script>
 import { ref, onMounted } from 'vue';
@@ -37,10 +38,21 @@ export default {
 </script>
 
 <style>
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 20px; 
+  margin-top: 60px;
+  margin-left: 30px;
+}
+
 .comedian-card {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;   
+  
   border: 1px solid #ccc;
   padding: 16px;
-  margin: 16px 0;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -49,4 +61,5 @@ export default {
 .comedian-card:hover {
   background-color: #f5f5f5;
 }
+
 </style>

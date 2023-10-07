@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="cards-container">
     <!-- Display bits as cards -->
     <div v-for="bit in bits" :key="bit.id" class="bit-card">
       <h3>{{ bit.comedian }}</h3>
       <p>{{ bit.description }}</p>
-      <v-btn @click="goToBitDetail(bit.id)">View Details</v-btn>
+      <v-btn class="details-btn" @click="goToBitDetail(bit.id)">View Details</v-btn>
     </div>
   </div>
 </template>
@@ -38,10 +38,21 @@ export default {
 </script>
 
 <style>
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 20px; 
+  margin-top: 60px;
+  margin-left: 30px;
+}
+
 .bit-card {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;   
+  
   border: 1px solid #ccc;
   padding: 16px;
-  margin: 16px 0;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -50,4 +61,11 @@ export default {
 .bit-card:hover {
   background-color: #f5f5f5;
 }
+
+.details-btn {
+  padding: 5px 10px;  
+  font-size: 14px;  
+  margin-top: 10px; 
+}
+
 </style>

@@ -1,12 +1,13 @@
 <template>
-    <div>
-      <!-- Display podcasts as cards -->
-      <div v-for="podcast in podcasts" :key="podcast.id" class="podcast-card" @click="goToPodcastDetail(podcast.id)">
-        <h3>{{ podcast.name }}</h3>
-        <p>{{ podcast.comedians }}</p>
-      </div>
+  <div class="cards-container">
+    <!-- Display podcasts as cards -->
+    <div v-for="podcast in podcasts" :key="podcast.id" class="podcast-card" @click="goToPodcastDetail(podcast.id)">
+      <h3>{{ podcast.name }}</h3>
+      <p>{{ podcast.comedians }}</p>
     </div>
+  </div>
 </template>
+
   
 <script>
 import { ref, onMounted } from 'vue';
@@ -37,17 +38,29 @@ export default {
 </script>
 
 <style>
-  .podcast-card {
-    border: 1px solid #ccc;
-    padding: 16px;
-    margin: 16px 0;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 20px; 
+  margin-top: 60px;
+  margin-left: 30px;
+}
+
+.podcast-card {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;   
   
-  .podcast-card:hover {
-    background-color: #f5f5f5;
-  }
+  border: 1px solid #ccc;
+  padding: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.podcast-card:hover {
+  background-color: #f5f5f5;
+}
+
   </style>
   
