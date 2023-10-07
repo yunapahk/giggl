@@ -1,9 +1,25 @@
 <template>
-  <div v-if="bit">
-    <h3>{{ bit.comedian }}</h3>
-    <p>{{ bit.description }}</p>
-    <button @click="editBit">Edit</button>
-    <button @click="deleteBit">Delete</button>
+  <div class="center-container" v-if="bit">
+    <v-card class="content">
+      <!-- Title -->
+      <v-card-title>{{ bit.comedian }}</v-card-title>
+
+      <!-- Text -->
+      <v-card-subtitle>{{ bit.description }}</v-card-subtitle>
+
+     <!-- Actions -->
+     <v-card-actions>
+        <!-- Edit button replaced with an icon -->
+        <v-btn icon @click="editBit">
+          <i class="fa-regular fa-pen-to-square"></i>
+        </v-btn>
+        
+          <!-- Delete button replaced with trash icon -->
+        <v-btn icon @click="deleteBit">
+          <i class="fa-solid fa-trash"></i>
+        </v-btn>
+      </v-card-actions>
+    </v-card>
   </div>
 </template>
 
@@ -43,3 +59,19 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  width: 100vw;
+}
+
+.content {
+  align-items: center;
+  width: 80%;  
+  max-width: 600px; 
+}
+</style>

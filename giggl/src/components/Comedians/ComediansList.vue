@@ -1,8 +1,8 @@
 <template>
   <div class="cards-container">
-    <!-- Display comedians as cards -->
-    <div v-for="comedian in comedians" :key="comedian.id" class="comedian-card" @click="goToComedianDetail(comedian.id)">
-      <h1>{{ comedian.name }}</h1>
+    <div v-for="comedian in comedians" :key="comedian.id" class="card">
+      <h3>{{ comedian.name }}</h3>
+      <v-btn class="details-btn" @click="goToComedianDetail(comedian.id)">View Details</v-btn>
     </div>
   </div>
 </template>
@@ -23,21 +23,19 @@ export default {
         comedians.value = response.data;
       });
     });
-
-    // Assuming you have a method to navigate to comedian details
-    const goToComedianDetail = (id) => {
-      router.push({ name: 'ComedianDetail', params: { id } });
+    const goToComediansDetail = (id) => {
+      router.push({ name: 'ComediansDetail', params: { id } });
     };
 
     return {
       comedians,
-      goToComedianDetail
+      goToComediansDetail
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
 .cards-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr); 
@@ -46,7 +44,7 @@ export default {
   margin-left: 30px;
 }
 
-.comedian-card {
+.card {
   display: flex;
   flex-direction: column; 
   align-items: center;   
@@ -58,8 +56,13 @@ export default {
   transition: background-color 0.3s;
 }
 
-.comedian-card:hover {
+.card:hover {
   background-color: #f5f5f5;
 }
 
+.details-btn {
+  padding: 5px 10px;  
+  font-size: 14px;  
+  margin-top: 10px; 
+}
 </style>

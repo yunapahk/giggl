@@ -1,8 +1,22 @@
 <template>
-  <div v-if="comedian">
-    <h3>{{ comedian.name }}</h3>
-    <button @click="editComedian">Edit</button>
-    <button @click="deleteComedian">Delete</button>
+  <div class="center-container" v-if="comedian">
+    <v-card class="content">
+      <!-- Title -->
+      <v-card-title>{{ comedian.name }}</v-card-title>
+
+      <!-- Actions -->
+      <v-card-actions>
+        <!-- Edit button replaced with an icon -->
+        <v-btn icon @click="editComedian">
+          <i class="fa-regular fa-pen-to-square"></i>
+        </v-btn>
+        
+        <!-- Delete button replaced with trash icon -->
+        <v-btn icon @click="deleteComedian">
+          <i class="fa-solid fa-trash"></i>
+        </v-btn>
+      </v-card-actions>
+    </v-card>
   </div>
 </template>
 
@@ -16,6 +30,9 @@ export default {
     return {
       comedian: null
     };
+  },
+  mounted() {
+    this.fetchComedianDetail();
   },
   methods: {
     fetchComedianDetail() {
@@ -38,3 +55,19 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  width: 100vw;
+}
+
+.content {
+  align-items: center;
+  width: 80%;  
+  max-width: 600px; 
+}
+</style>

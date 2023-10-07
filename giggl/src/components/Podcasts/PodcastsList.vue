@@ -1,14 +1,13 @@
 <template>
   <div class="cards-container">
-    <!-- Display podcasts as cards -->
-    <div v-for="podcast in podcasts" :key="podcast.id" class="podcast-card" @click="goToPodcastDetail(podcast.id)">
+    <div v-for="podcast in podcasts" :key="podcast.id" class="card" @click="goToPodcastDetail(podcast.id)">
       <h3>{{ podcast.name }}</h3>
       <p>{{ podcast.comedians }}</p>
+      <v-btn class="details-btn">View Details</v-btn>
     </div>
   </div>
 </template>
 
-  
 <script>
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
@@ -37,7 +36,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .cards-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr); 
@@ -46,7 +45,7 @@ export default {
   margin-left: 30px;
 }
 
-.podcast-card {
+.card {
   display: flex;
   flex-direction: column; 
   align-items: center;   
@@ -58,9 +57,13 @@ export default {
   transition: background-color 0.3s;
 }
 
-.podcast-card:hover {
+.card:hover {
   background-color: #f5f5f5;
 }
 
-  </style>
-  
+.details-btn {
+  padding: 5px 10px;  
+  font-size: 14px;  
+  margin-top: 10px; 
+}
+</style>
