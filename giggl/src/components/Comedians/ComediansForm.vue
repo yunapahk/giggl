@@ -1,38 +1,61 @@
 <template>
-    <div>
-      <input v-model="comedian.name" placeholder="Comedian">
-      <button @click="submitForm">Update</button>
-    </div>
-  </template>
-  
-  <script>
-  import { ref, onMounted } from 'vue';
-  import { useRouter } from 'vue-router';
-  import api from '@/services/api.js';
-  
-  export default {
-    props: ['id'],
-    data() {
-      return {
-        comedian: {
-          name: '',
-        }
-      };
-    },
-    mounted() {
-      if (this.id) {
-        api.getComedian(this.id).then(response => {
-          this.comedian = response.data;
-        });
+  <div class="center-container">
+    <v-form class="form-content" ref="form" @submit.prevent="submitForm">
+      <v-text-field v-model="comedian.name" label="Comedian" outlined></v-text-field>
+      <v-btn type="submit" color="primary">Update</v-btn>
+    </v-form>
+  </div>
+</template>
+
+<script>
+import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+import api from '@/services/api.js';
+
+export default {
+  props: ['id'],
+  data() {
+    return {
+      comedian: {
+        name: '',
       }
-    },
-    methods: {
-      submitForm() {
-        api.updateComedian(this.id, this.comedian).then(() => {
-          this.$emit('refreshComedians');
-          this.$router.push('/');
-        });
-      }
+    };
+  },
+  setup() {
+    const router = useRouter(); 
+
+    return {
+      router 
+    };
+  },
+  mounted() {
+    if (this.id) {
+      api.getComedian(this.id).then(response => {
+        this.comedian = response.data;
+      });
     }
-  };
-  </script>
+  },
+  methods: {
+    submitForm() {
+      api.updateComedian(this.id, this.comedian).then(() => {
+        this.$emit('refreshComedians');
+        this.router.push('/comedians');
+      });
+    }
+  }
+};
+</script>
+
+<style scoped>
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh; 
+}
+
+.form-content {
+  width: 80%; 
+  max-width: 600px; 
+}
+</style>

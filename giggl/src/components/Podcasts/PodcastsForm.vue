@@ -1,11 +1,13 @@
 <template>
-    <div>
-      <input v-model="podcast.name" placeholder="Name of Podcast">
-      <input v-model="podcast.comedians" placeholder="Comedians">
-      <button @click="submitForm">Update</button>
-    </div>
-  </template>
-  
+  <div class="center-container">
+    <v-form class="form-content" ref="form" @submit.prevent="submitForm">
+      <v-text-field v-model="podcast.name" label="Name of Podcast" outlined></v-text-field>
+      <v-text-field v-model="podcast.comedians" label="Comedians" outlined></v-text-field>
+      <v-btn type="submit" color="primary">Update</v-btn>
+    </v-form>
+  </div>
+</template>
+
 <script>
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
@@ -32,7 +34,7 @@ export default {
     submitForm() {
       api.updatePodcast(this.id, this.podcast).then(() => { 
         this.$emit('refreshPodcast');
-        this.$router.push('/');
+        this.$router.push('/podcasts');
       });
     }
   },
@@ -42,3 +44,17 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
+.form-content {
+  width: 80%; 
+  max-width: 600px; 
+}
+</style>

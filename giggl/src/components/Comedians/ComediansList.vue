@@ -23,13 +23,13 @@ export default {
         comedians.value = response.data;
       });
     });
-    const goToComediansDetail = (id) => {
-      router.push({ name: 'ComediansDetail', params: { id } });
+    const goToComedianDetail = (id) => {
+      router.push(`/comedians/${id}`);
     };
 
     return {
       comedians,
-      goToComediansDetail
+      goToComedianDetail
     }
   }
 }

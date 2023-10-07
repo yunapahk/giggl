@@ -1,6 +1,5 @@
 <template>
   <div class="cards-container">
-    <!-- Display bits as cards -->
     <div v-for="bit in bits" :key="bit.id" class="bit-card">
       <h3>{{ bit.comedian }}</h3>
       <p>{{ bit.description }}</p>

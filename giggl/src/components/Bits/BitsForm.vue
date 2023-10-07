@@ -24,10 +24,10 @@ export default {
     };
   },
   setup() {
-    const router = useRouter(); // Using useRouter
+    const router = useRouter(); 
 
     return {
-      router // Making it available in the methods
+      router 
     };
   },
   mounted() {

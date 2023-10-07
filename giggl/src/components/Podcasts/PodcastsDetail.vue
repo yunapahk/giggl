@@ -1,12 +1,28 @@
 <template>
-    <div v-if="podcast">
-      <h3>{{ podcast.name }}</h3>
-      <p>{{ podcast.comedians }}</p>
-      <button @click="editPodcast">Edit</button>
-      <button @click="deletePodcast">Delete</button>
-    </div>
+  <div class="center-container" v-if="podcast">
+    <v-card class="content">
+      <!-- Title -->
+      <v-card-title>{{ podcast.name }}</v-card-title>
+
+      <!-- Text -->
+      <v-card-subtitle>{{ podcast.comedians }}</v-card-subtitle>
+
+      <!-- Actions -->
+      <v-card-actions>
+        <!-- Edit button replaced with an icon -->
+        <v-btn icon @click="editPodcast">
+          <i class="fa-regular fa-pen-to-square"></i>
+        </v-btn>
+        
+        <!-- Delete button replaced with trash icon -->
+        <v-btn icon @click="deletePodcast">
+          <i class="fa-solid fa-trash"></i>
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+  </div>
 </template>
-  
+
 <script>
 import { useRouter } from 'vue-router';
 import api from '@/services/api.js'; 
@@ -34,7 +50,6 @@ export default {
     },
     deletePodcast() {
       api.deletePodcast(this.id).then(() => { 
-        // After successful deletion, navigate to podcasts list
         this.$router.push('/podcasts');
       }).catch(error => {
         console.error("Error deleting podcast:", error);
@@ -44,4 +59,18 @@ export default {
 };
 </script>
 
-  
+<style scoped>
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  width: 100vw;
+}
+
+.content {
+  align-items: center;
+  width: 80%;  
+  max-width: 600px; 
+}
+</style>

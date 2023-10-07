@@ -1,10 +1,12 @@
 <template>
-  <div>
-    <input v-model="tourdate.comedians" placeholder="Comedians">
-    <textarea v-model="tourdate.tour" placeholder="Name of Tour"></textarea>
-    <textarea v-model="tourdate.dates" placeholder="Dates"></textarea>
-    <textarea v-model="tourdate.link" placeholder="Link"></textarea>
-    <button @click="submitForm">Update</button>
+  <div class="center-container">
+    <v-form class="form-content" ref="form" @submit.prevent="submitForm">
+      <v-text-field v-model="tourdate.comedians" label="Comedians" outlined></v-text-field>
+      <v-textarea v-model="tourdate.tour" label="Name of Tour" outlined></v-textarea>
+      <v-textarea v-model="tourdate.dates" label="Dates" outlined></v-textarea>
+      <v-textarea v-model="tourdate.link" label="Link" outlined></v-textarea>
+      <v-btn type="submit" color="primary">Update</v-btn>
+    </v-form>
   </div>
 </template>
 
@@ -46,3 +48,19 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh; 
+  margin-top: 5rem;
+}
+
+.form-content {
+  width: 80%; 
+  max-width: 600px; 
+}
+</style>

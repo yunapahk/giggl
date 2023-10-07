@@ -1,11 +1,11 @@
 <template>
   <div class="cards-container">
-    <!-- Display tourdates as cards -->
-    <div v-for="tourdate in tourdates" :key="tourdate.id" class="tourdate-card" @click="goToTourdateDetail(tourdate.id)">
+    <div v-for="tourdate in tourdates" :key="tourdate.id" class="tourdate-card">
       <h3>{{ tourdate.comedians }}</h3>
       <h4>{{ tourdate.tour }}</h4>
       <p>{{ tourdate.dates }}</p>
       <a :href="tourdate.link" target="_blank">View Link</a>
+      <v-btn class="details-btn" @click="goToTourdateDetail(tourdate.id)">View Details</v-btn>
     </div>
   </div>
 </template>
@@ -62,6 +62,12 @@ setup() {
 
 .tourdate-card:hover {
   background-color: #f5f5f5;
+}
+
+.details-btn {
+  padding: 5px 10px;
+  font-size: 14px;
+  margin-top: 10px;
 }
 
 </style>
