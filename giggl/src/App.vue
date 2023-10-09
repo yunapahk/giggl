@@ -106,13 +106,14 @@ header {
   background-color: rgb(89, 89, 95);
   margin-bottom: 20px;
 }
+
 .v-btn {
-  padding: 0px 50px 50px 60px;
+  padding: 0px 50px 50px 50px;
 }
+
 .burger-btn {
   margin-bottom: 8px;
 }
-
 
 router-link {
   text-decoration: none;
@@ -139,6 +140,11 @@ main {
 .small-icon {
   font-size: 16px;
   
+}
+
+.v-app-bar ::v-deep .v-toolbar__content {
+  width: 65% !important;
+  margin: auto !important;
 }
 
 </style>
