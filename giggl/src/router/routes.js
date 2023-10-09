@@ -1,6 +1,9 @@
 // Import Dashboard Component
 import Dashboard from '@/components/Dashboard.vue';
 
+// Import Create Component
+import Create from '@/components/Create.vue';
+
 // Import Bits Components
 import BitsList from '@/components/Bits/BitsList.vue';
 import BitsDetail from '@/components/Bits/BitsDetail.vue';
@@ -26,6 +29,9 @@ export default [
     // Dashboard
     { path: '/', name: 'dashboard', component: Dashboard },
 
+    // Create
+    { path: '/create', name: 'create', component: Create },
+    
     // Bits
     { path: '/bits/add', component: BitsForm },               
     { path: '/bits/:id/edit/', component: BitsForm, props: true }, 

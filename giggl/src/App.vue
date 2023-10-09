@@ -32,6 +32,11 @@
           <router-link :to="{ name: 'tourdates' }">
             <v-btn color="white" text>Tour Dates</v-btn>
           </router-link>
+          <router-link :to="{ name: 'create' }">
+            <v-btn color="white">
+              <i class="fa-solid fa-plus small-icon" style="color: #ffffff;"></i> Create
+            </v-btn>
+          </router-link>
         </div>
 
         <!-- Spacer to ensure the center alignment -->
@@ -39,41 +44,46 @@
 
       </v-app-bar>
       
-<!-- Navigation Drawer for mobile screens -->
-<v-navigation-drawer v-model="drawer" app temporary>
-    <v-list>
-        <v-list-item>
-            <v-list-item-content>
-                <router-link :to="{ name: 'bits' }">
-                    <v-btn color="white" text class="elevation-0 mt-2">Bits</v-btn>
-                </router-link>
-            </v-list-item-content>
-        </v-list-item>
-        <v-list-item>
-            <v-list-item-content>
-                <router-link :to="{ name: 'comedians' }">
-                    <v-btn color="white" text class="elevation-0 mt-2">Comedians</v-btn>
-                </router-link>
-            </v-list-item-content>
-        </v-list-item>
-        <v-list-item>
-            <v-list-item-content>
-                <router-link :to="{ name: 'podcasts' }">
-                    <v-btn color="white" text class="elevation-0 mt-2">Podcasts</v-btn>
-                </router-link>
-            </v-list-item-content>
-        </v-list-item>
-        <v-list-item>
-            <v-list-item-content>
-                <router-link :to="{ name: 'tourdates' }">
-                    <v-btn color="white" text class="elevation-0 mt-2">Tour Dates</v-btn>
-                </router-link>
-            </v-list-item-content>
-        </v-list-item>
-    </v-list>
-</v-navigation-drawer>
-
-
+      <!-- Navigation Drawer for mobile screens -->
+      <v-navigation-drawer v-model="drawer" app temporary>
+        <v-list>
+            <v-list-item>
+                <v-list-item-content>
+                    <router-link :to="{ name: 'bits' }">
+                        <v-btn color="white" text class="elevation-0 mt-2">Bits</v-btn>
+                    </router-link>
+                </v-list-item-content>
+            </v-list-item>
+            <v-list-item>
+                <v-list-item-content>
+                    <router-link :to="{ name: 'comedians' }">
+                        <v-btn color="white" text class="elevation-0 mt-2">Comedians</v-btn>
+                    </router-link>
+                </v-list-item-content>
+            </v-list-item>
+            <v-list-item>
+                <v-list-item-content>
+                    <router-link :to="{ name: 'podcasts' }">
+                        <v-btn color="white" text class="elevation-0 mt-2">Podcasts</v-btn>
+                    </router-link>
+                </v-list-item-content>
+            </v-list-item>
+            <v-list-item>
+                <v-list-item-content>
+                    <router-link :to="{ name: 'tourdates' }">
+                        <v-btn color="white" text class="elevation-0 mt-2">Tour Dates</v-btn>
+                    </router-link>
+                </v-list-item-content>
+            </v-list-item>
+            <v-list-item>
+                <v-list-item-content>
+                    <router-link :to="{ name: 'create' }">
+                        <v-btn color="white" text class="elevation-0 mt-2">Create</v-btn>
+                    </router-link>
+                </v-list-item-content>
+            </v-list-item>
+        </v-list>
+      </v-navigation-drawer>
 
     </header>
     <div class="content">
@@ -139,12 +149,5 @@ main {
 
 .small-icon {
   font-size: 16px;
-  
 }
-
-.v-app-bar ::v-deep .v-toolbar__content {
-  width: 65% !important;
-  margin: auto !important;
-}
-
 </style>
