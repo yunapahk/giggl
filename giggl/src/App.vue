@@ -108,14 +108,14 @@ header {
   padding: 1rem 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
 .v-app-bar.thin-navbar {
   height: 55px;
   display: flex;
   align-items: center;
-  background-color: rgb(89, 89, 95);
+  background: linear-gradient(to bottom, rgb(118, 82, 196), rgb(88, 62, 176));
   margin-bottom: 20px;
 }
+
 
 .v-btn {
   padding: 0px 50px 50px 50px;
