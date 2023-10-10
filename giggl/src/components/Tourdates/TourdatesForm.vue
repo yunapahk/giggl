@@ -5,7 +5,7 @@
       <v-textarea v-model="tourdate.tour" label="Name of Tour" outlined></v-textarea>
       <v-textarea v-model="tourdate.dates" label="Dates" outlined></v-textarea>
       <v-textarea v-model="tourdate.link" label="Link" outlined></v-textarea>
-      <v-btn type="submit" color="primary">Update</v-btn>
+      <v-btn type="submit" color="primary">{{ isUpdateMode ? 'Update' : 'Create' }}</v-btn>
     </v-form>
   </div>
 </template>
@@ -13,7 +13,7 @@
 <script>
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import api from '@/services/api.js'; 
+import api from '@/services/api.js';
 
 export default {
   props: ['id'],
@@ -27,30 +27,43 @@ export default {
       }
     };
   },
+  computed: {
+    isUpdateMode() {
+      return !!this.id; // Convert to boolean, if id exists, then it's update mode.
+    }
+  },
+  setup() {
+    const router = useRouter();
+    return { router };
+  },
   mounted() {
-    if (this.id) {
-      api.getTourdate(this.id).then(response => { 
+    if (this.isUpdateMode) {
+      api.getTourdate(this.id).then(response => {
         this.tourdate = response.data;
       });
     }
   },
   methods: {
     submitForm() {
-      api.updateTourdate(this.id, this.tourdate).then(() => { // Using api object
-        this.$emit('refreshTourdates');
-        this.$router.push('/');
-      });
+      if (this.isUpdateMode) {
+      // Update
+        api.updateTourdate(this.id, this.tourdate).then(() => {
+          this.$emit('refreshTourdates');
+          this.router.push('/tourdates');
+        });
+      } else {
+      // Create
+        api.addTourdate(this.tourdate).then(() => {
+          this.$emit('refreshTourdates');
+          this.router.push('/tourdates');
+        });
+      }
     }
-  },
-  setup() {
-    const router = useRouter();
-    return { router };
   }
 };
 </script>
 
 <style scoped>
-
 .center-container {
   display: flex;
   justify-content: center;

@@ -2,7 +2,7 @@
   <div class="center-container">
     <v-form class="form-content" ref="form" @submit.prevent="submitForm">
       <v-text-field v-model="comedian.name" label="Comedian" outlined></v-text-field>
-      <v-btn type="submit" color="primary">Update</v-btn>
+      <v-btn type="submit" color="primary">{{ isUpdateMode ? 'Update' : 'Create' }}</v-btn>
     </v-form>
   </div>
 </template>
@@ -21,15 +21,17 @@ export default {
       }
     };
   },
+  computed: {
+    isUpdateMode() {
+      return !!this.id;
+    }
+  },
   setup() {
     const router = useRouter(); 
-
-    return {
-      router 
-    };
+    return { router };
   },
   mounted() {
-    if (this.id) {
+    if (this.isUpdateMode) {
       api.getComedian(this.id).then(response => {
         this.comedian = response.data;
       });
@@ -37,10 +39,17 @@ export default {
   },
   methods: {
     submitForm() {
-      api.updateComedian(this.id, this.comedian).then(() => {
-        this.$emit('refreshComedians');
-        this.router.push('/comedians');
-      });
+      if (this.isUpdateMode) {
+        api.updateComedian(this.id, this.comedian).then(() => {
+          this.$emit('refreshComedians');
+          this.router.push('/comedians');
+        });
+      } else {
+        api.addComedian(this.comedian).then(() => {
+          this.$emit('refreshComedians');
+          this.router.push('/comedians');
+        });
+      }
     }
   }
 };

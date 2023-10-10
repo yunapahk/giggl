@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-// Backend URL setup
+// Backend URL
 const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'https://giggl-backend-d1dba8cb813e.herokuapp.com/';
 
-// Axios instance
+// Axios
 const apiClient = axios.create({
   baseURL: BASE_URL,
   headers: {
@@ -26,28 +26,28 @@ const podcastsApi = makeCrudApi('podcasts');
 const tourdatesApi = makeCrudApi('tourdates');
 
 export default {
-  // For bits
+  // Bits
   getBits: bitsApi.getAll,
   getBit: bitsApi.getOne,
   addBit: bitsApi.add,
   updateBit: bitsApi.update,
   deleteBit: bitsApi.delete,
 
-  // For comedians
+  // Comedians
   getComedians: comediansApi.getAll,
   getComedian: comediansApi.getOne,
   addComedian: comediansApi.add,
   updateComedian: comediansApi.update,
   deleteComedian: comediansApi.delete,
 
-  // For podcasts
+  // Podcasts
   getPodcasts: podcastsApi.getAll,
   getPodcast: podcastsApi.getOne,
   addPodcast: podcastsApi.add,
   updatePodcast: podcastsApi.update,
   deletePodcast: podcastsApi.delete,
 
-  // For tourdates
+  // Tourdates
   getTourdates: tourdatesApi.getAll,
   getTourdate: tourdatesApi.getOne,
   addTourdate: tourdatesApi.add,

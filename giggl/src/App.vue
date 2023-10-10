@@ -34,7 +34,7 @@
           </router-link>
           <router-link :to="{ name: 'create' }">
             <v-btn color="white">
-              <i class="fa-solid fa-plus small-icon" style="color: #ffffff;"></i> Create
+              <i class="fa-solid fa-plus small-icon" style="color: #ffffff;"></i>
             </v-btn>
           </router-link>
         </div>

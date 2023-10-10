@@ -3,7 +3,7 @@
     <v-form class="form-content" ref="form" @submit.prevent="submitForm">
       <v-text-field v-model="bit.comedian" label="Comedian" outlined></v-text-field>
       <v-textarea v-model="bit.description" label="Description" outlined></v-textarea>
-      <v-btn type="submit" color="primary">Update</v-btn>
+      <v-btn type="submit" color="primary">{{ isUpdateMode ? 'Update' : 'Create' }}</v-btn>
     </v-form>
   </div>
 </template>
@@ -20,7 +20,8 @@ export default {
       bit: {
         comedian: '',
         description: ''
-      }
+      },
+      isUpdateMode: !!this.id  
     };
   },
   setup() {
@@ -31,7 +32,7 @@ export default {
     };
   },
   mounted() {
-    if (this.id) {
+    if (this.isUpdateMode) {
       api.getBit(this.id).then(response => {
         this.bit = response.data;
       });
@@ -39,10 +40,19 @@ export default {
   },
   methods: {
     submitForm() {
-      api.updateBit(this.id, this.bit).then(() => {
-        this.$emit('refreshBits');
-        this.router.push('/bits');
-      });
+      if (this.isUpdateMode) {
+        // Update
+        api.updateBit(this.id, this.bit).then(() => {
+          this.$emit('refreshBits');
+          this.router.push('/bits');
+        });
+      } else {
+        // Create
+        api.addBit(this.bit).then(() => {
+          this.$emit('refreshBits');
+          this.router.push('/bits');
+        });
+      }
     }
   }
 };
