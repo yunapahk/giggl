@@ -1,7 +1,17 @@
 <template>
   <div class="center-container">
     <v-form class="form-content" ref="form" @submit.prevent="submitForm">
-      <v-text-field v-model="comedian.name" label="Comedian" outlined></v-text-field>
+
+      <!-- Profile Picture -->
+      <div class="profile-picture-container">
+        <img v-if="comedian.profile_picture" :src="comedian.profile_picture" alt="Profile Picture" class="profile-picture" />
+        <img v-else src="@/assets/defaultcomedian.jpeg" alt="Default Profile Picture" class="profile-picture" />
+      </div>
+
+      <v-text-field v-model="comedian.name" label="Comedian" outlined full-width></v-text-field>
+      <v-text-field v-model="comedian.profile_picture" label="Image URL" outlined full-width></v-text-field>
+
+
       <v-btn type="submit" color="primary">{{ isUpdateMode ? 'Update' : 'Create' }}</v-btn>
     </v-form>
   </div>
@@ -14,43 +24,47 @@ import api from '@/services/api.js';
 
 export default {
   props: ['id'],
-  data() {
-    return {
-      comedian: {
-        name: '',
+  setup(props) {
+    const router = useRouter();
+
+    const comedian = ref({
+      name: '',
+      profile_picture: null
+    });
+
+    const isUpdateMode = ref(!!props.id);
+
+    onMounted(() => {
+      if (isUpdateMode.value) {
+        api.getComedian(props.id).then(response => {
+          comedian.value = response.data;
+        });
       }
-    };
-  },
-  computed: {
-    isUpdateMode() {
-      return !!this.id;
-    }
-  },
-  setup() {
-    const router = useRouter(); 
-    return { router };
-  },
-  mounted() {
-    if (this.isUpdateMode) {
-      api.getComedian(this.id).then(response => {
-        this.comedian = response.data;
-      });
-    }
-  },
-  methods: {
-    submitForm() {
-      if (this.isUpdateMode) {
-        api.updateComedian(this.id, this.comedian).then(() => {
-          this.$emit('refreshComedians');
-          this.router.push('/comedians');
+    });
+
+    const submitForm = () => {
+      const formData = new FormData();
+      formData.append('name', comedian.value.name);
+      if (comedian.value.profile_picture) {
+        formData.append('profile_picture', comedian.value.profile_picture);
+      }
+
+      if (isUpdateMode.value) {
+        api.updateComedian(props.id, formData).then(() => {
+          router.push('/comedians');
         });
       } else {
-        api.addComedian(this.comedian).then(() => {
-          this.$emit('refreshComedians');
-          this.router.push('/comedians');
+        api.addComedian(formData).then(() => {
+          router.push('/comedians');
         });
       }
-    }
+    };
+
+    return {
+      comedian,
+      isUpdateMode,
+      submitForm
+    };
   }
 };
 </script>
@@ -64,7 +78,34 @@ export default {
 }
 
 .form-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 80%; 
   max-width: 600px; 
 }
+
+.profile-picture-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+.form-content .v-text-field {
+  width: 100%;
+}
+
+.form-content .v-input__slot {
+  width: 100%;
+}
+
+
 </style>

@@ -2,6 +2,7 @@
   <div class="cards-container">
     <div v-for="comedian in comedians" :key="comedian.id" class="card">
       <h3>{{ comedian.name }}</h3>
+      <v-img class="profile-image" v-bind:src="comedian.profile_picture" width="150" height="150"></v-img>
       <v-btn class="details-btn" @click="goToComedianDetail(comedian.id)">View Details</v-btn>
     </div>
   </div>
@@ -43,7 +44,6 @@ export default {
   margin-top: 60px;
   margin-left: 30px;
 }
-
 .card {
   display: flex;
   flex-direction: column; 
@@ -65,4 +65,10 @@ export default {
   font-size: 14px;  
   margin-top: 10px; 
 }
+.profile-image {
+  border-radius: 80%;
+  width: 100px;
+  height: 200px;
+}
+
 </style>
