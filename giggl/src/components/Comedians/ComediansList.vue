@@ -1,5 +1,11 @@
 <template>
+  <!-- Add the search bar -->
+  <div>
+    <input v-model="searchQuery" placeholder="Search comedians..." style="margin-left: 80px; margin-bottom: 20px;">
+  </div>
+
   <div class="cards-container">
+    <!-- Modify the loop to use comedians (which is now filtered) -->
     <div v-for="comedian in comedians" :key="comedian.id" class="card">
       <h3>{{ comedian.name }}</h3>
       <v-img class="profile-picture" v-bind:src="comedian.profile_picture" width="150" height="150"></v-img>
@@ -10,7 +16,7 @@
 
 
 <script>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, reactive, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import api from '@/services/api.js';  
 
@@ -18,37 +24,66 @@ export default {
   setup() {
     const comedians = ref([]);
     const router = useRouter();
+    const searchQuery = ref(""); // new search input
 
     onMounted(() => {
       api.getComedians().then(response => {  
         comedians.value = response.data;
       });
     });
+
+    const filteredComedians = computed(() => {
+      return comedians.value.filter(comedian => 
+        comedian.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+      );
+    });
+
     const goToComedianDetail = (id) => {
       router.push(`/comedians/${id}`);
     };
 
     return {
-      comedians,
-      goToComedianDetail
+      comedians: filteredComedians,
+      goToComedianDetail,
+      searchQuery 
     }
   }
 }
 </script>
 
+
 <style scoped>
 .cards-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); 
+  grid-template-columns: repeat(5, 1fr); 
   gap: 20px; 
-  margin-top: 60px;
-  margin-left: 30px;
+  margin-top: 200px;
+  margin-left: 80px;
+  margin-right: 80px;
 }
+
+@media screen and (max-width: 1200px) {
+  .cards-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cards-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .cards-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
 .card {
   display: flex;
   flex-direction: column; 
   align-items: center;   
-  
   border: 1px solid #ccc;
   padding: 16px;
   border-radius: 8px;
@@ -65,6 +100,7 @@ export default {
   font-size: 14px;  
   margin-top: 10px; 
 }
+
 .profile-picture {
   width: 150px;
   height: 150px;
@@ -73,6 +109,5 @@ export default {
   margin-bottom: 10px;
   border: 2px solid #b1adad;
 }
-
 
 </style>
