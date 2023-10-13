@@ -21,7 +21,7 @@
     </div>
 
     <div class="summary">
-      Just a developer who loves stand-up comedy. Check out my Github!
+      Just a developer who loves stand-up comedy. Based in Los Angeles, CA.
     </div>
 
     <v-divider></v-divider>
@@ -47,7 +47,9 @@ export default {
 
 <style scoped>
 .custom-footer {
-  background: linear-gradient(to bottom, rgb(149, 132, 184), rgb(84, 70, 129));
+  /* background: linear-gradient(to bottom, rgb(149, 132, 184), rgb(84, 70, 129)); */
+  margin-top: 30rem;
+  background-color: rgb(93, 91, 91);
   padding: 10px 0;
   height: auto; 
 }

@@ -3,6 +3,15 @@
     <v-form class="form-content" ref="form" @submit.prevent="submitForm">
       <v-text-field v-model="podcast.name" label="Name of Podcast" outlined></v-text-field>
       <v-text-field v-model="podcast.comedians" label="Comedians" outlined></v-text-field>
+      
+      <!-- YouTube Video ID Input -->
+      <v-text-field v-model="podcast.youtube_video_id" label="YouTube Video ID" outlined></v-text-field>
+
+      <!-- YouTube Video Preview -->
+      <div v-if="podcast.youtube_video_id">
+        <iframe :src="`https://www.youtube.com/embed/${podcast.youtube_video_id}?rel=0&showinfo=0`" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+      </div>
+
       <v-btn type="submit" color="primary">{{ isUpdateMode ? 'Update' : 'Create' }}</v-btn>
     </v-form>
   </div>
@@ -20,12 +29,13 @@ export default {
       podcast: {
         name: '',
         comedians: '',
+        youtube_video_id: ''  // New field for YouTube Video ID
       }
     };
   },
   computed: {
     isUpdateMode() {
-      return !!this.id; 
+      return !!this.id;
     }
   },
   setup() {
@@ -43,12 +53,12 @@ export default {
     submitForm() {
       if (this.isUpdateMode) {
         api.updatePodcast(this.id, this.podcast).then(() => {
-          this.$emit('refreshPodcasts'); 
+          this.$emit('refreshPodcasts');
           this.router.push('/podcasts');
         });
       } else {
         api.addPodcast(this.podcast).then(() => {
-          this.$emit('refreshPodcasts'); 
+          this.$emit('refreshPodcasts');
           this.router.push('/podcasts');
         });
       }

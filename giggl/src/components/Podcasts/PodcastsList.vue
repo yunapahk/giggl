@@ -3,6 +3,13 @@
     <div v-for="podcast in podcasts" :key="podcast.id" class="card" @click="goToPodcastDetail(podcast.id)">
       <h3>{{ podcast.name }}</h3>
       <p>{{ podcast.comedians }}</p>
+     <p>{{ podcast.youtube_video_id  }}</p>
+      
+      <!-- YouTube Video Preview -->
+      <div v-if="podcast.youtube_video_id">
+        <iframe :src="`https://www.youtube.com/embed/${podcast.youtube_video_id}?rel=0&showinfo=0`" width="250" height="140" frameborder="0" allowfullscreen></iframe>
+      </div>
+      
       <v-btn class="details-btn">View Details</v-btn>
     </div>
   </div>
@@ -11,7 +18,7 @@
 <script>
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import api from '@/services/api.js'; 
+import api from '@/services/api.js';
 
 export default {
   setup() {
@@ -19,7 +26,7 @@ export default {
     const router = useRouter();
 
     onMounted(() => {
-      api.getPodcasts().then(response => { 
+      api.getPodcasts().then(response => {
         podcasts.value = response.data;
       });
     });
@@ -48,8 +55,7 @@ export default {
 .card {
   display: flex;
   flex-direction: column; 
-  align-items: center;   
-  
+  align-items: center;
   border: 1px solid #ccc;
   padding: 16px;
   border-radius: 8px;
@@ -64,6 +70,6 @@ export default {
 .details-btn {
   padding: 5px 10px;  
   font-size: 14px;  
-  margin-top: 10px; 
+  margin-top: 10px;
 }
 </style>

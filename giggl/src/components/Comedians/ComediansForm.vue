@@ -4,7 +4,7 @@
 
       <!-- Profile Picture -->
       <div class="profile-picture-container">
-        <img v-if="comedian.profile_picture" :src="comedian.profile_picture" alt="Profile Picture" class="profile-picture" />
+        <img v-if="comedian.profile_picture && comedian.profile_picture !== ''" :src="comedian.profile_picture" alt="Profile Picture" class="profile-picture" />
         <img v-else src="@/assets/defaultcomedian.jpeg" alt="Default Profile Picture" class="profile-picture" />
       </div>
 
@@ -29,8 +29,9 @@ export default {
 
     const comedian = ref({
       name: '',
-      profile_picture: null
+      profile_picture: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
     });
+
 
     const isUpdateMode = ref(!!props.id);
 

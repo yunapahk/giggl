@@ -70,4 +70,22 @@ setup() {
   margin-top: 10px;
 }
 
+@media screen and (max-width: 1200px) {
+  .cards-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cards-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .cards-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
 </style>

@@ -1,11 +1,11 @@
 <template>
-  <!-- Add the search bar -->
-  <div>
-    <input v-model="searchQuery" placeholder="Search comedians..." style="margin-left: 80px; margin-bottom: 20px;">
+  <div class="search-container">
+    <div class="search">
+      <input v-model="searchQuery" placeholder="Search comedians..." style="margin-bottom: 20px;">
+    </div>
   </div>
 
   <div class="cards-container">
-    <!-- Modify the loop to use comedians (which is now filtered) -->
     <div v-for="comedian in comedians" :key="comedian.id" class="card">
       <h3>{{ comedian.name }}</h3>
       <v-img class="profile-picture" v-bind:src="comedian.profile_picture" width="150" height="150"></v-img>
@@ -13,7 +13,6 @@
     </div>
   </div>
 </template>
-
 
 <script>
 import { ref, onMounted, reactive, computed } from 'vue';
@@ -24,7 +23,7 @@ export default {
   setup() {
     const comedians = ref([]);
     const router = useRouter();
-    const searchQuery = ref(""); // new search input
+    const searchQuery = ref("");
 
     onMounted(() => {
       api.getComedians().then(response => {  
@@ -52,12 +51,33 @@ export default {
 </script>
 
 
+
 <style scoped>
+.search-container {
+  display: flex;     
+  justify-content: center; 
+  align-items: center;    
+  /* height: 4rem;       */
+  /* margin-bottom: 2rem;  */
+  margin-top: 4rem;  
+}
+
+.search {
+  /* margin-top: 1rem; */
+  width: 40%;  
+  border-radius: 8px;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1rem;
+  border: 1px solid #ccc;
+}
+
 .cards-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr); 
   gap: 20px; 
-  margin-top: 200px;
   margin-left: 80px;
   margin-right: 80px;
 }
@@ -107,7 +127,7 @@ export default {
   border-radius: 50%; 
   object-fit: cover;
   margin-bottom: 10px;
-  border: 2px solid #b1adad;
 }
+
 
 </style>
