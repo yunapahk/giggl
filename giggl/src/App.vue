@@ -89,11 +89,19 @@
     <div class="content">
       <router-view></router-view>
     </div>
+
+    <!-- Footer Component -->
+    <Footer />
   </v-app>
 </template>
 
 <script>
+import Footer from '@/components/Footer.vue';
+
 export default {
+  components: {
+    Footer
+  },
   data() {
     return {
       drawer: false
@@ -103,6 +111,7 @@ export default {
 </script>
 
 <style scoped>
+
 header {
   background-color: #f9f9f9;
   padding: 1rem 0;

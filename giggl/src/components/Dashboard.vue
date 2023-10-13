@@ -1,10 +1,24 @@
 <template>
   <div>
+    <!-- Slideshow Carousel Component -->
     <div class="carousel-container">
-      <!-- Carousel Component -->
       <carousel :items-to-show="1">
         <slide v-for="image in images" :key="image.src" class="slide">
           <img :src="image.src" :alt="image.alt">
+        </slide>
+
+        <template #addons>
+          <navigation />
+          <pagination />
+        </template>
+      </carousel>
+    </div>
+
+    <!-- Comedians Carousel Component -->
+    <div class="carousel-container">
+      <carousel :items-to-show="1">
+        <slide v-for="comedian in comedians" :key="comedian.src" class="slide">
+          <img :src="comedian.src" :alt="comedian.alt">
         </slide>
 
         <template #addons>
@@ -21,7 +35,6 @@
   </div>
 </template>
 
-
 <script>
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
@@ -34,6 +47,10 @@ import image5 from "@/assets/carousel/5.png";
 import image6 from "@/assets/carousel/6.png";
 import image7 from "@/assets/carousel/7.png";
 import image8 from "@/assets/carousel/8.png";
+
+import comedianImage1 from "@/assets/comedians/1.png";
+import comedianImage2 from "@/assets/comedians/2.png";
+// ... other comedian images imports
 
 export default {
   name: 'Dashboard',
@@ -54,6 +71,11 @@ export default {
         { src: image6, alt: "Image 6" },
         { src: image7, alt: "Image 7" },
         { src: image8, alt: "Image 8" }
+      ],
+      comedians: [
+        { src: comedianImage1, alt: "Comedian 1" },
+        { src: comedianImage2, alt: "Comedian 2" },
+        // ... other comedian images in the array
       ]
     };
   }
@@ -62,29 +84,21 @@ export default {
 
 <style scoped>
 .carousel-container {
-  margin-top: 4rem;
   display: flex;
   justify-content: center;
 }
 
-.carousel {
-  margin: 0 auto;
-  width: 100%;
-  max-width: 1000px;
-}
-
 .slide {
-  width: 100%;
+  width: 80%;
   display: flex;         
   justify-content: center; 
   align-items: center;  
 }
 
 .slide img {
-  width: 100%; /* This will make the image take up 80% width of the slide */
+  width: 80%;
+  height: 70%;
   display: block;
-  margin: 0 auto; /* Horizontally center the image if not taking full width */
+  margin: 0 auto;
 }
-
-
 </style>
