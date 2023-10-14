@@ -1,7 +1,11 @@
 <template>
   <div class="search-container">
     <div class="search">
-      <input v-model="searchQuery" placeholder="Search podcasts..." style="margin-bottom: 20px;">
+      <v-text-field
+        v-model="searchQuery"
+        label="Search podcasts..."
+        solo
+      ></v-text-field>
     </div>
   </div>
 
@@ -10,7 +14,6 @@
       <h3>{{ podcast.podcast_title }}</h3>
       <p>{{ podcast.name }}</p>
       <p>{{ podcast.comedians }}</p>
-
 
       <!-- YouTube Video Preview -->
       <div v-if="podcast.youtube_video_id">
@@ -59,7 +62,6 @@ export default {
     };
   }
 };
-
 </script>
 
 <style scoped>
@@ -78,7 +80,7 @@ export default {
   align-items: center;
   justify-content: center;
   padding-top: 1rem;
-  border: 1px solid #ccc;
+  border: transparent;
 }
 
 .cards-container {

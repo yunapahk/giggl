@@ -1,7 +1,11 @@
 <template>
   <div class="search-container">
     <div class="search">
-      <input v-model="searchQuery" placeholder="Search comedians..." style="margin-bottom: 20px;">
+      <v-text-field
+        v-model="searchQuery"
+        label="Search comedians..."
+        solo
+      ></v-text-field>
     </div>
   </div>
 
@@ -68,7 +72,7 @@ export default {
   align-items: center;
   justify-content: center;
   padding-top: 1rem;
-  border: 1px solid #ccc;
+  border: transparent;
 }
 
 .cards-container {

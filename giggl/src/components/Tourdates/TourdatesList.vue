@@ -2,7 +2,11 @@
   <!-- Search Component -->
   <div class="search-container">
     <div class="search">
-      <input v-model="searchQuery" placeholder="Search tourdates..." style="margin-bottom: 20px;">
+      <v-text-field
+        v-model="searchQuery"
+        label="Search tourdates..."
+        solo
+      ></v-text-field>
     </div>
   </div>
 
@@ -38,7 +42,7 @@ export default {
     const filteredTourdates = computed(() => {
       return tourdates.value.filter(tourdate => 
         tourdate.comedians.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-        tourdate.tour.toLowerCase().includes(searchQuery.value.toLowerCase())  // Assuming 'tour' is a string
+        tourdate.tour.toLowerCase().includes(searchQuery.value.toLowerCase())  
       );
     });
 
@@ -55,7 +59,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .search-container {
   display: flex;     
   justify-content: center; 
@@ -65,13 +69,13 @@ export default {
 
 .search {
   width: 40%;  
-  border-radius: 4px;
+  border-radius: 8px;
   height: 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
   padding-top: 1rem;
-  border: 1px solid #ccc;
+  border: transparent;
 }
 
 .cards-container {

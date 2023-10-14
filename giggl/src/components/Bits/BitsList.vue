@@ -1,21 +1,34 @@
 <template>
+  <!-- Search Component -->
+  <div class="search-container">
+    <div class="search">
+      <v-text-field
+        v-model="searchQuery"
+        label="Search bits..."
+        solo
+      ></v-text-field>
+    </div>
+  </div>
+
+  <!-- Bits Cards -->
   <div class="cards-container">
-    <div v-for="bit in bits" :key="bit.id" class="bit-card">
+    <div v-for="bit in filteredBits" :key="bit.id" class="card" @click="goToBitDetail(bit.id)">
       <h3>{{ bit.comedian }}</h3>
       <p>{{ bit.description }}</p>
-      <v-btn class="details-btn" @click="goToBitDetail(bit.id)">View Details</v-btn>
+      <v-btn class="details-btn">View Details</v-btn>
     </div>
   </div>
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import api from '@/services/api.js';
 
 export default {
   setup() {
     const bits = ref([]);
+    const searchQuery = ref('');
     const router = useRouter();
 
     onMounted(() => {
@@ -24,19 +37,45 @@ export default {
       });
     });
 
+    const filteredBits = computed(() => {
+      return bits.value.filter(bit => 
+        bit.comedian.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+        bit.description.toLowerCase().includes(searchQuery.value.toLowerCase())
+      );
+    });
+
     const goToBitDetail = (id) => {
       router.push(`/bits/${id}`);
     };
 
     return {
-      bits,
-      goToBitDetail
+      filteredBits,
+      goToBitDetail,
+      searchQuery
     };
   }
 };
 </script>
 
-<style>
+<style scoped>
+.search-container {
+  display: flex;
+  justify-content: center; 
+  align-items: center;    
+  margin-top: 4rem;
+}
+
+.search {
+  width: 40%;
+  border-radius: 8px;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1rem;
+  border: transparent;
+}
+
 .cards-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr); 
@@ -45,26 +84,30 @@ export default {
   margin-left: 30px;
 }
 
-.bit-card {
+.card {
   display: flex;
   flex-direction: column; 
-  align-items: center;   
-  
+  align-items: center;
   border: 1px solid #ccc;
   padding: 16px;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s;
+  justify-content: center;
+  width: 90%;
 }
 
-.bit-card:hover {
+.card:hover {
   background-color: #f5f5f5;
 }
 
 .details-btn {
-  padding: 5px 10px;  
-  font-size: 14px;  
-  margin-top: 10px; 
+  padding: 5px 10px;
+  font-size: 14px;
+  margin-top: 10px;
 }
 
+h3 {
+  text-align: center;
+}
 </style>
