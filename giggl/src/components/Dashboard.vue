@@ -43,14 +43,14 @@
 import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
 import api from '@/services/api.js';  
-import image1 from "@/assets/carousel/1.png";
-import image2 from "@/assets/carousel/2.png";
-import image3 from "@/assets/carousel/3.png";
-import image4 from "@/assets/carousel/4.png";
-import image5 from "@/assets/carousel/5.png";
-import image6 from "@/assets/carousel/6.png";
-import image7 from "@/assets/carousel/7.png";
-import image8 from "@/assets/carousel/8.png";
+import image1 from "@/assets/Carousel/1.png";
+import image2 from "@/assets/Carousel/2.png";
+import image3 from "@/assets/Carousel/3.png";
+import image4 from "@/assets/Carousel/4.png";
+import image5 from "@/assets/Carousel/5.png";
+import image6 from "@/assets/Carousel/6.png";
+import image7 from "@/assets/Carousel/7.png";
+import image8 from "@/assets/Carousel/8.png";
 
 export default {
   name: 'Dashboard',
