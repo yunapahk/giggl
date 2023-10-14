@@ -61,7 +61,8 @@ export default {
   display: flex;     
   justify-content: center; 
   align-items: center;    
-  margin-top: 4rem;  
+  margin-top: 5rem;  
+  margin-bottom: 4rem;
 }
 
 .search {
