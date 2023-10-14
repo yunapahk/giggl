@@ -16,8 +16,8 @@ const vuetify = createVuetify({
     defaultTheme: 'myTheme',
     themes: {
       myTheme: {
-        primary: '#FF5722',   // example color
-        secondary: '#03A9F4' // example color
+        primary: '#FF5722',  
+        secondary: '#03A9F4'
       }
     }
   }

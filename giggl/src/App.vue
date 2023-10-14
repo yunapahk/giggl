@@ -3,19 +3,18 @@
     <header>
       <v-app-bar :elevation="2" class="thin-navbar">
         
-        <!-- Custom Hamburger Button for small screens using the burger emoji -->
+        <!-- Hamburger Menu -->
         <v-btn icon @click="drawer = !drawer" class="d-md-none burger-btn">
           🍔
         </v-btn>
 
-        <!-- Home button on the left -->
+        <!-- Home button -->
         <router-link :to="{ name: 'dashboard' }">
           <v-btn color="white">
             <i class="fa-solid fa-house small-icon" style="color: #ffffff;"></i>
           </v-btn>
         </router-link>
 
-        <!-- Spacer to push the rest to the center -->
         <v-spacer></v-spacer>
         
         <!-- Rest of the buttons - Hidden on small screens -->
@@ -39,7 +38,6 @@
           </router-link>
         </div>
 
-        <!-- Spacer to ensure the center alignment -->
         <v-spacer></v-spacer>
 
       </v-app-bar>

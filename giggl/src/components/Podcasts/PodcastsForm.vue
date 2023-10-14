@@ -3,7 +3,8 @@
     <v-form class="form-content" ref="form" @submit.prevent="submitForm">
       <v-text-field v-model="podcast.name" label="Name of Podcast" outlined></v-text-field>
       <v-text-field v-model="podcast.comedians" label="Comedians" outlined></v-text-field>
-      
+      <v-text-field v-model="podcast.podcast_title" label="Podcast Title" outlined></v-text-field>
+
       <!-- YouTube Video ID Input -->
       <v-text-field v-model="podcast.youtube_video_id" label="YouTube Video ID" outlined></v-text-field>
 
@@ -29,7 +30,8 @@ export default {
       podcast: {
         name: '',
         comedians: '',
-        youtube_video_id: ''  // New field for YouTube Video ID
+        podcast_title: '',
+        youtube_video_id: ''  
       }
     };
   },

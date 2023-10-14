@@ -15,10 +15,14 @@
     </div>
 
     <!-- Comedians Carousel Component -->
-    <div class="carousel-container">
+    <h1>Comedians</h1>
+    <div class="comedians-carousel">
       <carousel :items-to-show="1">
-        <slide v-for="comedian in comedians" :key="comedian.src" class="slide">
-          <img :src="comedian.src" :alt="comedian.alt">
+        <slide v-for="(comedianGroup, index) in comedianSlides" :key="index" class="slide">
+          <div v-for="comedian in comedianGroup" :key="comedian.id" class="card">
+            <v-img class="profile-picture" v-bind:src="comedian.profile_picture" width="150" height="150"></v-img>
+            <h3>{{ comedian.name }}</h3>
+          </div>
         </slide>
 
         <template #addons>
@@ -36,9 +40,9 @@
 </template>
 
 <script>
-import 'vue3-carousel/dist/carousel.css'
-import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
-
+import 'vue3-carousel/dist/carousel.css';
+import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
+import api from '@/services/api.js';  
 import image1 from "@/assets/carousel/1.png";
 import image2 from "@/assets/carousel/2.png";
 import image3 from "@/assets/carousel/3.png";
@@ -47,10 +51,6 @@ import image5 from "@/assets/carousel/5.png";
 import image6 from "@/assets/carousel/6.png";
 import image7 from "@/assets/carousel/7.png";
 import image8 from "@/assets/carousel/8.png";
-
-import comedianImage1 from "@/assets/comedians/1.png";
-import comedianImage2 from "@/assets/comedians/2.png";
-// ... other comedian images imports
 
 export default {
   name: 'Dashboard',
@@ -70,29 +70,63 @@ export default {
         { src: image5, alt: "Image 5" },
         { src: image6, alt: "Image 6" },
         { src: image7, alt: "Image 7" },
-        { src: image8, alt: "Image 8" }
+        { src: image8, alt: "Image 8" },
       ],
-      comedians: [
-        { src: comedianImage1, alt: "Comedian 1" },
-        { src: comedianImage2, alt: "Comedian 2" },
-        // ... other comedian images in the array
-      ]
+      comedians: [],
+      comediansPerSlide: 4,
+      comedianSlides: []
     };
+  },
+  mounted() {
+    api.getComedians().then(response => {
+      let fetchedComedians = response.data;
+      this.comedians = this.getRandomComedians(fetchedComedians, 8);
+
+      // Split comedians into groups of 4 for each slide
+      for (let i = 0; i < this.comedians.length; i += this.comediansPerSlide) {
+        this.comedianSlides.push(this.comedians.slice(i, i + this.comediansPerSlide));
+      }
+    });
+  },
+  methods: {
+    getRandomComedians(comedians, count) {
+      let shuffled = comedians.sort(() => 0.5 - Math.random());
+      return shuffled.slice(0, count);
+    }
   }
 }
 </script>
 
 <style scoped>
-.carousel-container {
+
+h1 {
+  margin-top: 7rem;
+  text-align: center;
+}
+.carousel-container, .comedians-carousel {
   display: flex;
   justify-content: center;
+  padding: 0 20px;
+}
+
+.comedians-carousel {
+  width: 100%;
+  margin-top: 2.5rem;
 }
 
 .slide {
-  width: 80%;
-  display: flex;         
-  justify-content: center; 
-  align-items: center;  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.card {
+  flex: 1;
+  margin: 0 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .slide img {
@@ -101,4 +135,6 @@ export default {
   display: block;
   margin: 0 auto;
 }
+
+
 </style>

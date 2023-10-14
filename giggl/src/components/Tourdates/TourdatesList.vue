@@ -35,7 +35,6 @@ export default {
       });
     });
 
-    // Computed property to filter tourdates based on search query
     const filteredTourdates = computed(() => {
       return tourdates.value.filter(tourdate => 
         tourdate.comedians.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
@@ -48,7 +47,7 @@ export default {
     };
 
     return {
-      filteredTourdates,  // Using the computed property here
+      filteredTourdates,  
       goToTourdateDetail,
       searchQuery 
     };
@@ -66,7 +65,7 @@ export default {
 
 .search {
   width: 40%;  
-  border-radius: 8px;
+  border-radius: 4px;
   height: 3rem;
   display: flex;
   align-items: center;

@@ -57,13 +57,10 @@ export default {
   display: flex;     
   justify-content: center; 
   align-items: center;    
-  /* height: 4rem;       */
-  /* margin-bottom: 2rem;  */
   margin-top: 4rem;  
 }
 
 .search {
-  /* margin-top: 1rem; */
   width: 40%;  
   border-radius: 8px;
   height: 3rem;

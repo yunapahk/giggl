@@ -5,7 +5,7 @@
       <!-- Profile Picture -->
       <div class="profile-picture-container">
         <img v-if="comedian.profile_picture && comedian.profile_picture !== ''" :src="comedian.profile_picture" alt="Profile Picture" class="profile-picture" />
-        <img v-else src="@/assets/defaultcomedian.jpeg" alt="Default Profile Picture" class="profile-picture" />
+        <img v-else src="@/assets/defaultcomedian.png" alt="Default Profile Picture" class="profile-picture" />
       </div>
 
       <v-text-field v-model="comedian.name" label="Comedian" outlined full-width></v-text-field>
