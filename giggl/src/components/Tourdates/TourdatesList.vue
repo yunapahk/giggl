@@ -4,7 +4,7 @@
     <div class="search">
       <v-text-field
         v-model="searchQuery"
-        label="Search tourdates..."
+        label="Search tour dates..."
         solo
       ></v-text-field>
     </div>
