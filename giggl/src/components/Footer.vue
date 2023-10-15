@@ -110,4 +110,8 @@ export default {
   white-space: nowrap; 
 }
 
+.summary {
+  margin-top: 1rem;
+  margin-bottom: .5rem;
+}
 </style>
