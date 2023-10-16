@@ -1,5 +1,4 @@
 <template>
-  <!-- Search Component -->
   <div class="search-container">
     <div class="search">
       <v-text-field
@@ -10,12 +9,10 @@
     </div>
   </div>
 
-  <!-- Bits Cards -->
   <div class="cards-container">
     <div v-for="bit in filteredBits" :key="bit.id" class="card" @click="goToBitDetail(bit.id)">
       <h3>{{ bit.comedian }}</h3>
       <p>{{ bit.description }}</p>
-      <v-btn class="details-btn">View Details</v-btn>
     </div>
   </div>
 </template>
@@ -93,19 +90,14 @@ export default {
   padding: 16px;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, box-shadow 0.3s;
   justify-content: center;
   width: 90%;
 }
 
 .card:hover {
   background-color: #f5f5f5;
-}
-
-.details-btn {
-  padding: 5px 10px;
-  font-size: 14px;
-  margin-top: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 h3 {

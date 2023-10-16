@@ -1,5 +1,4 @@
 <template>
-  <!-- Search Component -->
   <div class="search-container">
     <div class="search">
       <v-text-field
@@ -10,27 +9,30 @@
     </div>
   </div>
 
-  <!-- Tour Dates Cards -->
   <div class="cards-container">
-    <div v-for="tourdate in filteredTourdates" :key="tourdate.id" class="tourdate-card">
-      <h3>{{ tourdate.comedians }}</h3>
-      <h4>{{ tourdate.tour }}</h4>
-      <p>{{ tourdate.dates }}</p>
-      <a :href="tourdate.link" target="_blank">View Link</a>
-      <v-btn class="details-btn" @click="goToTourdateDetail(tourdate.id)">View Details</v-btn>
-    </div>
+    <router-link 
+      v-for="tourdate in filteredTourdates" 
+      :key="tourdate.id" 
+      :to="`/tourdates/${tourdate.id}`" 
+      class="card-link"
+    >
+      <div class="tourdate-card">
+        <h3>{{ tourdate.comedians }}</h3>
+        <h4>{{ tourdate.tour }}</h4>
+        <p>{{ tourdate.dates }}</p>
+        <a :href="tourdate.link" target="_blank" @click.stop>View Link</a>
+      </div>
+    </router-link>
   </div>
 </template>
 
 <script>
 import { ref, onMounted, computed } from 'vue'; 
-import { useRouter } from 'vue-router';
 import api from '@/services/api.js'; 
 
 export default {
   setup() {
     const tourdates = ref([]);
-    const router = useRouter();
     const searchQuery = ref("");
 
     onMounted(() => {
@@ -46,19 +48,13 @@ export default {
       );
     });
 
-    const goToTourdateDetail = (id) => {
-      router.push(`/tourdates/${id}`);
-    };
-
     return {
-      filteredTourdates,  
-      goToTourdateDetail,
+      filteredTourdates,
       searchQuery 
     };
   }
 };
 </script>
-
 <style scoped>
 .search-container {
   display: flex;     
@@ -102,10 +98,9 @@ export default {
   background-color: #f5f5f5;
 }
 
-.details-btn {
-  padding: 5px 10px;
-  font-size: 14px;
-  margin-top: 10px;
+.card-link {
+  text-decoration: none;
+  color: inherit;
 }
 
 @media screen and (max-width: 1200px) {

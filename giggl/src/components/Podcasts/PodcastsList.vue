@@ -10,31 +10,34 @@
   </div>
 
   <div class="cards-container">
-    <div v-for="podcast in filteredPodcasts" :key="podcast.id" class="card" @click="goToPodcastDetail(podcast.id)">
-      <h3>{{ podcast.podcast_title }}</h3>
-      <p>{{ podcast.name }}</p>
-      <p>{{ podcast.comedians }}</p>
+    <router-link 
+      v-for="podcast in filteredPodcasts" 
+      :key="podcast.id" 
+      :to="`/podcasts/${podcast.id}`" 
+      class="card-link"
+    >
+      <div class="card">
+        <h3>{{ podcast.podcast_title }}</h3>
+        <p>{{ podcast.name }}</p>
+        <p>{{ podcast.comedians }}</p>
 
-      <!-- YouTube Video Preview -->
-      <div v-if="podcast.youtube_video_id">
-        <iframe :src="`https://www.youtube.com/embed/${podcast.youtube_video_id}?rel=0&showinfo=0`" width="250" height="140" frameborder="0" allowfullscreen></iframe>
+        <!-- YouTube -->
+        <div v-if="podcast.youtube_video_id">
+          <iframe :src="`https://www.youtube.com/embed/${podcast.youtube_video_id}?rel=0&showinfo=0`" width="250" height="140" frameborder="0" allowfullscreen></iframe>
+        </div>
       </div>
-
-      <v-btn class="details-btn">View Details</v-btn>
-    </div>
+    </router-link>
   </div>
 </template>
 
 <script>
 import { ref, onMounted, computed } from 'vue';
-import { useRouter } from 'vue-router';
 import api from '@/services/api.js';
 
 export default {
   setup() {
     const podcasts = ref([]);
     const searchQuery = ref("");
-    const router = useRouter();
 
     onMounted(() => {
       api.getPodcasts().then(response => {
@@ -51,13 +54,8 @@ export default {
       );
     });
 
-    const goToPodcastDetail = (id) => {
-      router.push(`/podcasts/${id}`);
-    };
-
     return {
       filteredPodcasts,
-      goToPodcastDetail,
       searchQuery
     };
   }
@@ -109,13 +107,12 @@ export default {
   background-color: #f5f5f5;
 }
 
-.details-btn {
-  padding: 5px 10px;
-  font-size: 14px;
-  margin-top: 10px;
-}
-
 h3 {
   text-align: center;
+}
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
 }
 </style>

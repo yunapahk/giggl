@@ -5,7 +5,6 @@
   </template>
   
   <script>
-  import ComediansList from './ComediansList.vue';
   
   export default {
     components: {

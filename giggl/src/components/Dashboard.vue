@@ -1,36 +1,32 @@
 <template>
   <div>
-    <!-- Slideshow Carousel Component -->
-    <div class="carousel-container">
-      <carousel :items-to-show="1">
-        <slide v-for="image in images" :key="image.src" class="slide">
-          <img :src="image.src" :alt="image.alt">
-        </slide>
+    <!-- Vuetify Slideshow Carousel Component -->
+    <v-carousel>
+      <v-carousel-item
+        v-for="image in images"
+        :key="image.src"
+        :src="image.src"
+  
+      ></v-carousel-item>
+    </v-carousel>
 
-        <template #addons>
-          <navigation />
-          <pagination />
-        </template>
-      </carousel>
-    </div>
 
     <!-- Comedians Carousel Component -->
     <h1>Comedians</h1>
     <div class="comedians-carousel">
       <carousel :items-to-show="1">
         <slide v-for="(comedianGroup, index) in comedianSlides" :key="index" class="slide">
-          <div v-for="comedian in comedianGroup" :key="comedian.id" class="card">
+          <router-link v-for="comedian in comedianGroup" :key="comedian.id" :to="{ name: 'ComedianDetail', params: { id: comedian.id } }" class="card">
             <v-img class="profile-picture" v-bind:src="comedian.profile_picture" width="150" height="150"></v-img>
             <h3>{{ comedian.name }}</h3>
-          </div>
+          </router-link>
         </slide>
-
-        <template #addons>
-          <navigation />
-          <pagination />
-        </template>
-      </carousel>
-    </div>
+            <template #addons>
+              <navigation />
+              <pagination />
+          </template>
+        </carousel>
+      </div>
 
     <!-- Content Below App Bar -->
     <div class="content">
@@ -38,6 +34,7 @@
     </div>
   </div>
 </template>
+
 
 <script>
 import 'vue3-carousel/dist/carousel.css';
@@ -114,6 +111,14 @@ h1 {
   margin-top: 2.5rem;
 }
 
+.comedians-carousel .carousel__navigation--next,
+.comedians-carousel .carousel__navigation--prev {
+  background-color: black; 
+  width: 40px;
+  height: 40px;
+  z-index: 10;
+}
+
 .slide {
   display: flex;
   justify-content: space-between;
@@ -134,6 +139,10 @@ h1 {
   height: 70%;
   display: block;
   margin: 0 auto;
+}
+
+.v-carousel {
+  margin-top: 1rem;
 }
 
 

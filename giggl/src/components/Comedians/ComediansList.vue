@@ -10,23 +10,27 @@
   </div>
 
   <div class="cards-container">
-    <div v-for="comedian in comedians" :key="comedian.id" class="card">
-      <h3>{{ comedian.name }}</h3>
-      <v-img class="profile-picture" v-bind:src="comedian.profile_picture" width="150" height="150"></v-img>
-      <v-btn class="details-btn" @click="goToComedianDetail(comedian.id)">View Details</v-btn>
-    </div>
+    <router-link 
+      v-for="comedian in comedians" 
+      :key="comedian.id" 
+      :to="`/comedians/${comedian.id}`" 
+      class="card-link"
+    >
+      <div class="card">
+        <h3>{{ comedian.name }}</h3>
+        <v-img class="profile-picture" v-bind:src="comedian.profile_picture" width="150" height="150"></v-img>
+      </div>
+    </router-link>
   </div>
 </template>
 
 <script>
-import { ref, onMounted, reactive, computed } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref, onMounted, computed } from 'vue';
 import api from '@/services/api.js';  
 
 export default {
   setup() {
     const comedians = ref([]);
-    const router = useRouter();
     const searchQuery = ref("");
 
     onMounted(() => {
@@ -41,20 +45,13 @@ export default {
       );
     });
 
-    const goToComedianDetail = (id) => {
-      router.push(`/comedians/${id}`);
-    };
-
     return {
       comedians: filteredComedians,
-      goToComedianDetail,
       searchQuery 
     }
   }
 }
 </script>
-
-
 
 <style scoped>
 .search-container {
@@ -117,12 +114,6 @@ export default {
   background-color: #f5f5f5;
 }
 
-.details-btn {
-  padding: 5px 10px;  
-  font-size: 14px;  
-  margin-top: 10px; 
-}
-
 .profile-picture {
   width: 150px;
   height: 150px;
@@ -131,5 +122,8 @@ export default {
   margin-bottom: 10px;
 }
 
-
+.card-link {
+  text-decoration: none;
+  color: inherit;
+}
 </style>
