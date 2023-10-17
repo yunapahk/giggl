@@ -30,6 +30,29 @@
       </carousel>
     </div>
 
+    <!-- Podcasts Carousel Component -->
+    <h1>Podcasts</h1>
+    <div class="podcasts-carousel">
+      <carousel :items-to-show="1">
+        <slide v-for="(podcastGroup, index) in podcastSlides" :key="index" class="slide">
+          <router-link v-for="podcast in podcastGroup" :key="podcast.id" :to="`/podcasts/${podcast.id}`">
+            <div class="card">
+              <h3>{{ podcast.podcast_title }}</h3>
+              <p>{{ podcast.name }}</p>
+              <p>{{ podcast.comedians }}</p>
+              <div v-if="podcast.youtube_video_id">
+                <iframe :src="`https://www.youtube.com/embed/${podcast.youtube_video_id}?rel=0&showinfo=0`" width="250" height="140" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+          </router-link>
+        </slide>
+        <template #addons>
+          <navigation />
+          <pagination />
+        </template>
+      </carousel>
+    </div>
+
     <!-- Content Below App Bar -->
     <div class="content">
       <router-view></router-view>
@@ -73,7 +96,10 @@ export default {
       ],
       comedians: [],
       comediansPerSlide: 4,
-      comedianSlides: []
+      comedianSlides: [],
+      podcasts: [],
+      podcastsPerSlide: 4,
+      podcastSlides: []
     };
   },
   mounted() {
@@ -84,6 +110,13 @@ export default {
       // Split comedians into groups of 4 for each slide
       for (let i = 0; i < this.comedians.length; i += this.comediansPerSlide) {
         this.comedianSlides.push(this.comedians.slice(i, i + this.comediansPerSlide));
+      }
+    });
+
+    api.getPodcasts().then(response => {
+      this.podcasts = response.data;
+      for (let i = 0; i < this.podcasts.length; i += this.podcastsPerSlide) {
+        this.podcastSlides.push(this.podcasts.slice(i, i + this.podcastsPerSlide));
       }
     });
   },
@@ -108,23 +141,26 @@ h3 {
   color: black;
 }
 
-.carousel-container, .comedians-carousel {
+.comedians-carousel, .podcasts-carousel {
   display: flex;
   justify-content: center;
-  padding: 0 20px;
-}
-
-.comedians-carousel {
+  align-items: center;
   width: 100%;
   margin-top: 2.5rem;
-  padding: 0 30px; 
-  position: relative; 
-  overflow: hidden; 
+}
+
+::v-deep .carousel {
+    width: 100%;
+}
+
+::v-deep .carousel__navigation .carousel__arrow--left,
+::v-deep .carousel__navigation .carousel__arrow--right {
+  z-index: 2;
 }
 
 .slide {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-;
   align-items: center;
   width: 100%;
 }
@@ -135,23 +171,41 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 200px; 
 }
 
-.slide img {
-  width: 80%;
-  height: 70%;
+.profile-picture {
+  width: 100%;
+  height: auto;
   display: block;
-  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.v-carousel {
+  margin-top: 2rem; 
 }
 
 .slide ::v-deep a {
   text-decoration: none; 
   color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .slide ::v-deep a:hover {
   color: gray;  
   text-decoration: none; 
+}
+
+@media (max-width: 768px) {
+  .slide {
+    flex-direction: column;
+  }
+
+  .card {
+    margin-bottom: 15px;
+  }
 }
 
 </style>

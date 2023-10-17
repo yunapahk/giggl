@@ -55,6 +55,7 @@ export default {
   }
 };
 </script>
+
 <style scoped>
 .search-container {
   display: flex;     
