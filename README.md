@@ -1,9 +1,9 @@
 ### Giggl
 
-[Click here!](https://giggl-delta.vercel.app/)
+[Click here!](https://giggl-delta.vercel.app/) Discover laughs with giggl's comedy search engine, showcasing renowned comedians, their latest podcasts, and upcoming tour dates.
 
-## Description
-Discover laughs with giggl's comedy search engine, showcasing renowned comedians, their latest podcasts, and upcoming tour dates.
+
+
 
 
 - Technologies used: Django, Python, Vite/Vue
@@ -87,6 +87,44 @@ _Create/Update_
     
 ![React/Vue](/giggl/readmepngs/vdiagram.png)
 
+## Vue Terminology Explained
+
+### **Reactivity**
+
+- **Reactive properties**: Variables that automatically update the UI when they change.
+  - Defined using: `data()` in Options API or `ref()`/`reactive()` in Composition API.
+
+- **Computed properties**: Variables computed based on reactive properties, re-evaluated only when dependencies change.
+  - Defined using: `computed` in both APIs.
+
+- **Watchers**: Functions that observe and react to data changes.
+  - Defined using: `watch` in both APIs.
+
+### **Lifecycle Hooks**
+- Hooks that allow you to run code at various stages of a component's life, such as before it's created or after it's mounted to the DOM.
+  - Examples in Options API: `created()`, `mounted()`.
+  - Examples in Composition API: `onCreated()`, `onMounted()`.
+
+### **Methods**
+- Functions associated with a Vue instance or component.
+  - Defined within: `methods` object in Options API or directly within `setup()` function in Composition API.
+
+### **Props**
+- Custom attributes you can register on a component, useful for passing data from a parent component.
+  - Declaration in Options API: `props: []` or `props: {}`.
+  - Used within: `setup(props)` in Composition API.
+
+### **Template Binding**
+- The way to bind data to the DOM, making it reactive.
+  - In Options API: Directly use option names.
+  - In Composition API: Variables/methods must be returned from `setup()` to be accessible in the template.
+
+### **Code Organization**
+- How code is structured within a component or Vue instance.
+  - Options API: Code is organized by option type.
+  - Composition API: Offers flexibility in organization, often allowing grouping by feature or logic.
+
+
 | Feature               | Options API                         | Composition API                        |
 |-----------------------|------------------------------------|---------------------------------------|
 | **Reactivity**        | `data()`, `computed`, `watch`      | `ref()`, `reactive()`, `computed()`, `watch()` |
@@ -96,49 +134,7 @@ _Create/Update_
 | **Template Binding**  | Use direct option names            | Return from `setup()` to make available in template |
 | **Code Organization** | Split by option type               | Organize by feature inside `setup()`  |
 
-## Vue: Options API vs Composition API
 
-### **Reactivity**
-- **Options API**:
-  - Reactive properties: `data()`
-  - Computed and Watchers: `computed`, `watch`
-  
-- **Composition API**:
-  - Reactive references: `ref()`
-  - Reactive objects: `reactive()`
-  - Computed and Watchers: Used within `setup()`
-
-### **Lifecycle Hooks**
-- **Options API**:
-  - Example hooks: `created()`, `mounted()`
-  
-- **Composition API**:
-  - Example hooks: `onCreated()`, `onMounted()`
-
-### **Methods**
-- **Options API**:
-  - Defined within: `methods` object
-  
-- **Composition API**:
-  - Defined within: `setup()` function
-
-### **Props**
-- **Options API**:
-  - Declaration: `props: []` or `props: {}`
-  
-- **Composition API**:
-  - Used within: `setup(props)`
-
-### **Template Binding**
-- **Options API**:
-  - Directly use option names
-  
-- **Composition API**:
-  - Must return from `setup()` for template access
-
-### **Code Organization**
-- **Options API**:
-  - Organized by option type
 ## ERD 
 ```mermaid
 erDiagram
@@ -165,6 +161,5 @@ erDiagram
         date dates
         string link_to_dates
     }
-
-
+```
 
