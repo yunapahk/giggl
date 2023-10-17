@@ -6,7 +6,7 @@
         v-for="image in images"
         :key="image.src"
         :src="image.src"
-  
+        cover
       ></v-carousel-item>
     </v-carousel>
 
@@ -16,17 +16,19 @@
     <div class="comedians-carousel">
       <carousel :items-to-show="1">
         <slide v-for="(comedianGroup, index) in comedianSlides" :key="index" class="slide">
-          <router-link v-for="comedian in comedianGroup" :key="comedian.id" :to="{ name: 'ComedianDetail', params: { id: comedian.id } }" class="card">
-            <v-img class="profile-picture" v-bind:src="comedian.profile_picture" width="150" height="150"></v-img>
-            <h3>{{ comedian.name }}</h3>
+          <router-link v-for="comedian in comedianGroup" :key="comedian.id" :to="`/comedians/${comedian.id}`">
+            <div class="card">
+              <v-img class="profile-picture" v-bind:src="comedian.profile_picture" width="150" height="150"></v-img>
+              <h3>{{ comedian.name }}</h3>
+            </div>
           </router-link>
         </slide>
-            <template #addons>
-              <navigation />
-              <pagination />
-          </template>
-        </carousel>
-      </div>
+        <template #addons>
+          <navigation />
+          <pagination />
+        </template>
+      </carousel>
+    </div>
 
     <!-- Content Below App Bar -->
     <div class="content">
@@ -95,11 +97,17 @@ export default {
 </script>
 
 <style scoped>
-
 h1 {
   margin-top: 7rem;
   text-align: center;
 }
+
+h3 { 
+  margin-top: .5rem;
+  text-decoration: none;
+  color: black;
+}
+
 .carousel-container, .comedians-carousel {
   display: flex;
   justify-content: center;
@@ -109,19 +117,14 @@ h1 {
 .comedians-carousel {
   width: 100%;
   margin-top: 2.5rem;
-}
-
-.comedians-carousel .carousel__navigation--next,
-.comedians-carousel .carousel__navigation--prev {
-  background-color: black; 
-  width: 40px;
-  height: 40px;
-  z-index: 10;
+  padding: 0 30px; 
+  position: relative; 
+  overflow: hidden; 
 }
 
 .slide {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   width: 100%;
 }
@@ -141,9 +144,14 @@ h1 {
   margin: 0 auto;
 }
 
-.v-carousel {
-  margin-top: 1rem;
+.slide ::v-deep a {
+  text-decoration: none; 
+  color: black;
 }
 
+.slide ::v-deep a:hover {
+  color: gray;  
+  text-decoration: none; 
+}
 
 </style>
