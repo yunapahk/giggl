@@ -53,11 +53,27 @@
       </carousel>
     </div>
 
-    <!-- Content Below App Bar -->
-    <div class="content">
-      <router-view></router-view>
+    <!-- Tour Dates Carousel Component -->
+    <h1>Tour Dates</h1>
+        <div class="tourdates-carousel">
+          <carousel :items-to-show="1">
+            <slide v-for="(tourdateGroup, index) in tourdateSlides" :key="index" class="slide">
+              <router-link v-for="tourdate in tourdateGroup" :key="tourdate.id" :to="`/tourdates/${tourdate.id}`">
+                <div class="card">
+                  <h3>{{ tourdate.comedians }}</h3>
+                  <h4>{{ tourdate.tour }}</h4>
+                  <p>{{ tourdate.dates }}</p>
+                  <a :href="tourdate.link" target="_blank" @click.stop>View Link</a>
+                </div>
+              </router-link>
+            </slide>
+            <template #addons>
+              <navigation />
+              <pagination />
+            </template>
+          </carousel>
+        </div>
     </div>
-  </div>
 </template>
 
 
@@ -99,7 +115,10 @@ export default {
       comedianSlides: [],
       podcasts: [],
       podcastsPerSlide: 4,
-      podcastSlides: []
+      podcastSlides: [],
+      tourdates: [],
+tourdatesPerSlide: 4,
+tourdateSlides: [],
     };
   },
   mounted() {
@@ -119,7 +138,16 @@ export default {
         this.podcastSlides.push(this.podcasts.slice(i, i + this.podcastsPerSlide));
       }
     });
+
+    api.getTourdates().then(response => {
+  this.tourdates = response.data;
+  for (let i = 0; i < this.tourdates.length; i += this.tourdatesPerSlide) {
+    this.tourdateSlides.push(this.tourdates.slice(i, i + this.tourdatesPerSlide));
+  }
+});
+
   },
+  
   methods: {
     getRandomComedians(comedians, count) {
       let shuffled = comedians.sort(() => 0.5 - Math.random());
@@ -143,7 +171,7 @@ h3 {
 
 .comedians-carousel, .podcasts-carousel {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   width: 100%;
   margin-top: 2.5rem;
@@ -160,14 +188,13 @@ h3 {
 
 .slide {
   display: flex;
-  justify-content: space-;
+  justify-content: space-evenly;
   align-items: center;
   width: 100%;
 }
 
 .card {
   flex: 1;
-  margin: 0 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -179,10 +206,6 @@ h3 {
   height: auto;
   display: block;
   margin-bottom: 10px;
-}
-
-.v-carousel {
-  margin-top: 2rem; 
 }
 
 .slide ::v-deep a {
