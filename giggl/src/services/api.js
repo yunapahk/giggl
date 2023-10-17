@@ -1,9 +1,7 @@
 import axios from 'axios';
 
-// Backend URL
 const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'https://giggl-backend-d1dba8cb813e.herokuapp.com/';
 
-// Axios
 const apiClient = axios.create({
   baseURL: BASE_URL,
   headers: {
@@ -20,12 +18,36 @@ const makeCrudApi = (type) => ({
   delete: (id) => apiClient.delete(`${type}/${id}`),
 });
 
+const getAllData = async () => {
+  try {
+    const [bitsResponse, comediansResponse, podcastsResponse, tourdatesResponse] = await Promise.all([
+      bitsApi.getAll(),
+      comediansApi.getAll(),
+      podcastsApi.getAll(),
+      tourdatesApi.getAll(),
+    ]);
+
+    return {
+      bits: bitsResponse.data,
+      comedians: comediansResponse.data,
+      podcasts: podcastsResponse.data,
+      tourdates: tourdatesResponse.data,
+    };
+  } catch (error) {
+    console.error("Error fetching all data:", error);
+    throw error; 
+  }
+};
+
 const bitsApi = makeCrudApi('bits');
 const comediansApi = makeCrudApi('comedians');
 const podcastsApi = makeCrudApi('podcasts');
 const tourdatesApi = makeCrudApi('tourdates');
 
 export default {
+  // Get All Data for Bit model
+  getAllData,
+
   // Bits
   getBits: bitsApi.getAll,
   getBit: bitsApi.getOne,

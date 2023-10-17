@@ -54,5 +54,9 @@ export default [
     { path: '/tourdates/add', component: TourdatesForm },               
     { path: '/tourdates/:id/edit/', component: TourdatesForm, props: true }, 
     { path: '/tourdates/:id', component: TourdatesDetail, props: true },   
-    { path: '/tourdates', name: 'tourdates', component: TourdatesList } 
+    { path: '/tourdates', name: 'tourdates', component: TourdatesList },
+
+    // All
+    { path: '/:catchAll(.*)', component: BitsList },
+
   ]

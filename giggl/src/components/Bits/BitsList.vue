@@ -1,65 +1,75 @@
 <template>
-  <div class="search-container">
-    <div class="search">
-      <v-text-field
-        v-model="searchQuery"
-        label="Search bits..."
-        solo
-      ></v-text-field>
+    <div class="search-container">
+      <div class="search">
+        <v-text-field
+          v-model="searchQuery"
+          label="Search..."
+          solo
+        ></v-text-field>
+      </div>
     </div>
-  </div>
 
-  <div class="cards-container">
-    <div v-for="bit in filteredBits" :key="bit.id" class="card" @click="goToBitDetail(bit.id)">
-      <h3>{{ bit.comedian }}</h3>
-      <p>{{ bit.description }}</p>
-    </div>
+    <div class="cards-container">
+    <router-link 
+      v-for="item in items" 
+      :key="`${item.type}-${item.id}`" 
+      :to="getDetailRoute(item)" 
+      class="card"
+    >
+      <h3>{{ item.name }}</h3>
+      <!-- <p>{{ item.profile_picture }}</p> -->
+      <h3>{{ item.comedian }}</h3>
+      <h3>{{ item.comedians }}</h3>
+      <p>{{ item.description }}</p>
+      <p>{{ item.dates }}</p>
+      <p>{{ item.tour }}</p>
+    </router-link>
   </div>
 </template>
 
 <script>
-import { ref, onMounted, computed } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref, onMounted } from 'vue';
 import api from '@/services/api.js';
 
 export default {
-  setup() {
-    const bits = ref([]);
-    const searchQuery = ref('');
-    const router = useRouter();
-
-    onMounted(() => {
-      api.getBits().then(response => {
-        bits.value = response.data;
-      });
-    });
-
-    const filteredBits = computed(() => {
-      return bits.value.filter(bit => 
-        bit.comedian.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-        bit.description.toLowerCase().includes(searchQuery.value.toLowerCase())
-      );
-    });
-
-    const goToBitDetail = (id) => {
-      router.push(`/bits/${id}`);
-    };
-
+  data() {
     return {
-      filteredBits,
-      goToBitDetail,
-      searchQuery
+      items: [],
+      searchQuery: ''
     };
+  },
+  methods: {
+    getDetailRoute(item) {
+      return `/${item.type}s/${item.id}`;
+    },
+    async fetchAllData() {
+      try {
+        const data = await api.getAllData();
+        this.items = [
+          ...data.bits.map(item => ({ ...item, type: 'bit' })),
+          ...data.comedians.map(item => ({ ...item, type: 'comedian' })),
+          ...data.podcasts.map(item => ({ ...item, type: 'podcast' })),
+          ...data.tourdates.map(item => ({ ...item, type: 'tourdate' }))
+        ];
+      } catch (error) {
+        console.error("Error fetching all data:", error);
+      }
+    }
+  },
+  created() {
+    this.fetchAllData();
   }
-};
+}
 </script>
+
+
 
 <style scoped>
 .search-container {
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;    
-  margin-top: 5rem;  
+  margin-top: 5rem;
   margin-bottom: 4rem;
 }
 
@@ -84,7 +94,7 @@ export default {
 
 .card {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: center;
   border: 1px solid #ccc;
   padding: 16px;
@@ -95,12 +105,22 @@ export default {
   width: 90%;
 }
 
+.card-link, .card-link h3 {
+  text-decoration: none;
+  color: black;
+}
+
+
 .card:hover {
+  transform: scale(1.03); 
   background-color: #f5f5f5;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-h3 {
-  text-align: center;
+.cards-container .card,
+.cards-container .card h3,
+.cards-container .card p {
+  text-decoration: none;
+  color: black;
 }
 </style>

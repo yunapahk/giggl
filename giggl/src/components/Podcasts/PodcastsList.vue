@@ -104,7 +104,9 @@ export default {
 }
 
 .card:hover {
+  transform: scale(1.03); 
   background-color: #f5f5f5;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 h3 {

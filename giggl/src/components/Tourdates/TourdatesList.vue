@@ -84,6 +84,7 @@ export default {
   margin-left: 30px;
 }
 
+
 .tourdate-card {
   display: flex;
   flex-direction: column; 
@@ -96,7 +97,9 @@ export default {
 }
 
 .tourdate-card:hover {
+  transform: scale(1.03); 
   background-color: #f5f5f5;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .card-link {
