@@ -1,14 +1,16 @@
 ### Giggl
-[Deployed Frontend](google.com)
 
-[Deployed Backend](https://giggl-backend-d1dba8cb813e.herokuapp.com/)
-
-[Trello Board](https://trello.com/invite/b/xYyOnwr0/ATTI8f7dcb8c3ad62cb3b70f0af151eec366A63335A2/giggl)
-
+[Click here!](https://giggl-delta.vercel.app/)
 
 ## Description
-Comedy search engine with features including comedians podcasts and tour dates.
-- Technologies used: Django, Python, Vite/Vue, spaCy, Elasticsearch, Google Cloud Platform
+Discover laughs with giggl's comedy search engine, showcasing renowned comedians, their latest podcasts, and upcoming tour dates.
+
+
+- Technologies used: Django, Python, Vite/Vue
+
+- [Backend](https://giggl-backend-d1dba8cb813e.herokuapp.com/)
+
+- [Trello Board](https://trello.com/invite/b/xYyOnwr0/ATTI8f7dcb8c3ad62cb3b70f0af151eec366A63335A2/giggl)
 
 ## Models 
 ### Bits
@@ -30,11 +32,9 @@ Comedy search engine with features including comedians podcasts and tour dates.
 
 | Plan                                              | Task                        |
 |---------------------------------------------------|-----------------------------|
-| Create model for comedian, podcast, and tour dates | Backend in Django/Render          |
-| Set up UI                                         | Frontend in Angular/Heroku
-| YouTube API key                                   | Google Cloud Console        |
-| Transcribe Audio                                  | Google's Speech-to-Text API |
-| Process and analyze transcribed text              | spaCy or Elasticsearch      |
+| Create model for comedian, podcast, and tour dates | Backend in Django/Heroku          |
+| Set up UI                                         | Frontend in Vue/Vercel
+
 
 
 
@@ -87,6 +87,7 @@ _Create/Update_
     
 ![React/Vue](/giggl/readmepngs/vdiagram.png)
 
+
 ## ERD 
 ```mermaid
 erDiagram
@@ -113,5 +114,6 @@ erDiagram
         date dates
         string link_to_dates
     }
+
 
 
