@@ -10,26 +10,6 @@
       ></v-carousel-item>
     </v-carousel>
 
-
-    <!-- Comedians Carousel Component -->
-    <h1>Comedians</h1>
-    <div class="comedians-carousel">
-      <carousel :items-to-show="1">
-        <slide v-for="(comedianGroup, index) in comedianSlides" :key="index" class="slide">
-          <router-link v-for="comedian in comedianGroup" :key="comedian.id" :to="`/comedians/${comedian.id}`">
-            <div class="card">
-              <v-img class="profile-picture" v-bind:src="comedian.profile_picture" width="150" height="150"></v-img>
-              <h3>{{ comedian.name }}</h3>
-            </div>
-          </router-link>
-        </slide>
-        <template #addons>
-          <navigation />
-          <pagination />
-        </template>
-      </carousel>
-    </div>
-
     <!-- Podcasts Carousel Component -->
     <h1>Podcasts</h1>
     <div class="podcasts-carousel">
@@ -53,27 +33,49 @@
       </carousel>
     </div>
 
+    <v-spacer></v-spacer>
+    
     <!-- Tour Dates Carousel Component -->
     <h1>Tour Dates</h1>
-        <div class="tourdates-carousel">
-          <carousel :items-to-show="1">
-            <slide v-for="(tourdateGroup, index) in tourdateSlides" :key="index" class="slide">
-              <router-link v-for="tourdate in tourdateGroup" :key="tourdate.id" :to="`/tourdates/${tourdate.id}`">
-                <div class="card">
-                  <h3>{{ tourdate.comedians }}</h3>
-                  <h4>{{ tourdate.tour }}</h4>
-                  <p>{{ tourdate.dates }}</p>
-                  <a :href="tourdate.link" target="_blank" @click.stop>View Link</a>
-                </div>
-              </router-link>
-            </slide>
-            <template #addons>
-              <navigation />
-              <pagination />
-            </template>
-          </carousel>
-        </div>
+    <div class="tourdates-carousel">
+      <carousel :items-to-show="1">
+        <slide v-for="(tourdateGroup, index) in tourdateSlides" :key="index" class="slide">
+          <router-link v-for="tourdate in tourdateGroup" :key="tourdate.id" :to="`/tourdates/${tourdate.id}`">
+            <div class="card">
+              <h3>{{ tourdate.comedians }}</h3>
+              <h4>{{ tourdate.tour }}</h4>
+              <p>{{ tourdate.dates }}</p>
+              <a :href="tourdate.link" target="_blank" @click.stop>View Link</a>
+            </div>
+          </router-link>
+        </slide>
+        <template #addons>
+          <navigation />
+          <pagination />
+        </template>
+      </carousel>
     </div>
+  </div>
+
+
+<!-- Comedians Carousel Component -->
+<h1>Comedians</h1>
+<div class="comedians-carousel">
+  <carousel :items-to-show="1">
+    <slide v-for="(comedianGroup, index) in comedianSlides" :key="index" class="slide">
+      <router-link v-for="comedian in comedianGroup" :key="comedian.id" :to="`/comedians/${comedian.id}`">
+        <div class="card">
+          <v-img class="profile-picture" v-bind:src="comedian.profile_picture" width="150" height="150"></v-img>
+          <h3>{{ comedian.name }}</h3>
+        </div>
+      </router-link>
+    </slide>
+    <template #addons>
+      <navigation />
+      <pagination />
+    </template>
+  </carousel>
+</div>
 </template>
 
 
@@ -159,12 +161,14 @@ tourdateSlides: [],
 
 <style scoped>
 h1 {
-  margin-top: 7rem;
+  margin-top: 10rem;
+  margin-bottom: 2rem;
   text-align: center;
 }
 
 h3 { 
-  margin-top: .5rem;
+  margin-top: 2rem;
+  margin-bottom: .5rem;
   text-decoration: none;
   color: black;
 }
@@ -199,6 +203,7 @@ h3 {
   flex-direction: column;
   align-items: center;
   max-width: 200px; 
+  margin-bottom: 2rem;
 }
 
 .profile-picture {
