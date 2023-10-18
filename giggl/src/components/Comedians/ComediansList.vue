@@ -119,13 +119,21 @@ export default {
 .profile-picture {
   width: 150px;
   height: 150px;
-  border-radius: 50%; 
+  border-radius: 50%;
   object-fit: cover;
   margin-bottom: 10px;
 }
+
 
 .card-link {
   text-decoration: none;
   color: inherit;
 }
+
+::v-deep .v-img__img,
+::v-deep .v-img__img--contain {
+  object-fit: cover !important;
+}
+
+
 </style>
