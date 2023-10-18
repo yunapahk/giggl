@@ -1,14 +1,17 @@
 <template>
   <div>
-    <!-- Vuetify Slideshow Carousel Component -->
-    <v-carousel>
-      <v-carousel-item
-        v-for="image in images"
-        :key="image.src"
-        :src="image.src"
-        cover
-      ></v-carousel-item>
-    </v-carousel>
+    <div class="main-carousel">
+      <carousel :items-to-show="1">
+        <slide v-for="image in images" :key="image.src" class="slide">
+          <img :src="image.src" alt="Slide Image" class="slide-image"/>
+        </slide>
+        <template #addons>
+          <navigation />
+          <pagination />
+        </template>
+      </carousel>
+    </div>
+
 
     <!-- Podcasts Carousel Component -->
     <h1>Podcasts</h1>
@@ -119,8 +122,8 @@ export default {
       podcastsPerSlide: 4,
       podcastSlides: [],
       tourdates: [],
-tourdatesPerSlide: 4,
-tourdateSlides: [],
+      tourdatesPerSlide: 4,
+      tourdateSlides: [],
     };
   },
   mounted() {
@@ -160,6 +163,13 @@ tourdateSlides: [],
 </script>
 
 <style scoped>
+
+.slide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 h1 {
   margin-top: 10rem;
   margin-bottom: 2rem;
@@ -241,5 +251,4 @@ h3 {
     margin-bottom: 15px;
   }
 }
-
 </style>
