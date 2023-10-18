@@ -207,9 +207,10 @@ h3 {
 }
 
 .profile-picture {
-  width: 100%;
-  height: auto;
-  display: block;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
   margin-bottom: 10px;
 }
 
@@ -224,6 +225,11 @@ h3 {
 .slide ::v-deep a:hover {
   color: gray;  
   text-decoration: none; 
+}
+
+::v-deep .v-img__img,
+::v-deep .v-img__img--contain {
+  object-fit: cover !important;
 }
 
 @media (max-width: 768px) {
