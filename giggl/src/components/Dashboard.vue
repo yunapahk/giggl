@@ -12,7 +12,6 @@
       </carousel>
     </div>
 
-
     <!-- Podcasts Carousel Component -->
     <h1>Podcasts</h1>
     <div class="podcasts-carousel">
@@ -61,24 +60,24 @@
   </div>
 
 
-<!-- Comedians Carousel Component -->
-<h1>Comedians</h1>
-<div class="comedians-carousel">
-  <carousel :items-to-show="1">
-    <slide v-for="(comedianGroup, index) in comedianSlides" :key="index" class="slide">
-      <router-link v-for="comedian in comedianGroup" :key="comedian.id" :to="`/comedians/${comedian.id}`">
-        <div class="card">
-          <v-img class="profile-picture" v-bind:src="comedian.profile_picture" width="150" height="150"></v-img>
-          <h3>{{ comedian.name }}</h3>
-        </div>
-      </router-link>
-    </slide>
-    <template #addons>
-      <navigation />
-      <pagination />
-    </template>
-  </carousel>
-</div>
+    <!-- Comedians Carousel Component -->
+    <h1>Comedians</h1>
+    <div class="comedians-carousel">
+      <carousel :items-to-show="1">
+        <slide v-for="(comedianGroup, index) in comedianSlides" :key="index" class="slide">
+          <router-link v-for="comedian in comedianGroup" :key="comedian.id" :to="`/comedians/${comedian.id}`">
+            <div class="card">
+              <v-img class="profile-picture" v-bind:src="comedian.profile_picture" width="150" height="150"></v-img>
+              <h3>{{ comedian.name }}</h3>
+            </div>
+          </router-link>
+        </slide>
+        <template #addons>
+          <navigation />
+          <pagination />
+        </template>
+      </carousel>
+    </div>
 </template>
 
 
