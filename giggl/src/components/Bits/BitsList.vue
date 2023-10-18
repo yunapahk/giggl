@@ -1,23 +1,22 @@
 <template>
-    <div class="search-container">
-      <div class="search">
-        <v-text-field
-          v-model="searchQuery"
-          label="Search..."
-          solo
-        ></v-text-field>
-      </div>
+  <div class="search-container">
+    <div class="search">
+      <v-text-field
+        v-model="searchQuery"
+        label="Search..."
+        solo
+      ></v-text-field>
     </div>
+  </div>
 
-    <div class="cards-container">
+  <div class="cards-container">
     <router-link 
-      v-for="item in items" 
+      v-for="item in filteredItems" 
       :key="`${item.type}-${item.id}`" 
       :to="getDetailRoute(item)" 
       class="card"
     >
       <h3>{{ item.name }}</h3>
-      <!-- <p>{{ item.profile_picture }}</p> -->
       <h3>{{ item.comedian }}</h3>
       <h3>{{ item.comedians }}</h3>
       <p>{{ item.description }}</p>
@@ -38,6 +37,17 @@ export default {
       searchQuery: ''
     };
   },
+  computed: {
+  filteredItems() {
+    return this.items.filter(item => 
+      (item.name && item.name.toLowerCase().includes(this.searchQuery.toLowerCase())) ||
+      (item.comedian && item.comedian.toLowerCase().includes(this.searchQuery.toLowerCase())) ||
+      (item.comedians && item.comedians.toLowerCase().includes(this.searchQuery.toLowerCase())) ||
+      (item.description && item.description.toLowerCase().includes(this.searchQuery.toLowerCase()))
+    );
+  }
+},
+
   methods: {
     getDetailRoute(item) {
       return `/${item.type}s/${item.id}`;
@@ -61,8 +71,6 @@ export default {
   }
 }
 </script>
-
-
 
 <style scoped>
 .search-container {
@@ -109,7 +117,6 @@ export default {
   text-decoration: none;
   color: black;
 }
-
 
 .card:hover {
   transform: scale(1.03); 
