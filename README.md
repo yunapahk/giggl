@@ -1,6 +1,6 @@
 ### Giggl
 
-[Click here!](https://giggl-delta.vercel.app/) Discover laughs with giggl's comedy search engine, showcasing renowned comedians, their latest podcasts, and upcoming tour dates.
+[Click here](https://giggl-delta.vercel.app/) Discover laughs with giggl's comedy search engine, showcasing renowned comedians, their latest podcasts, and upcoming tour dates.
 
 
 
