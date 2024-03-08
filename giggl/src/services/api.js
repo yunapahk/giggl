@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'https://giggl-backend-d1dba8cb813e.herokuapp.com/';
+const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'https://giggl-75d300d66618.herokuapp.com/';
 
 const apiClient = axios.create({
   baseURL: BASE_URL,
