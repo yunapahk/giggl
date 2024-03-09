@@ -37,7 +37,7 @@
     <v-divider></v-divider>
 
     <div class="year-name">
-      {{ new Date().getFullYear() }} — <strong>Yuna Pahk</strong>
+      <strong>2023</strong> — <strong>Yuna Pahk</strong>
     </div>
   </v-footer>
 </template>
