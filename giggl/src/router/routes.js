@@ -4,6 +4,9 @@ import Dashboard from '@/components/Dashboard.vue';
 // Import Create Component
 import Create from '@/components/Create.vue';
 
+// Import User Component
+import User from '@/components/User.vue';
+
 // Import Bits Components
 import BitsList from '@/components/Bits/BitsList.vue';
 import BitsDetail from '@/components/Bits/BitsDetail.vue';
@@ -67,5 +70,8 @@ export default [
 
     // Auth
     { path: '/signup', name: 'signup', component: SignupForm },
-    { path: '/login', name: 'login', component: LoginForm}
+    { path: '/login', name: 'login', component: LoginForm},
+
+    // User
+    { path: '/user', name: 'user', component: User }
   ]
