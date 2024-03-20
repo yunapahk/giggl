@@ -24,12 +24,18 @@ import TourdatesList from '@/components/Tourdates/TourdatesList.vue';
 import TourdatesDetail from '@/components/Tourdates/TourdatesDetail.vue';
 import TourdatesForm from '@/components/Tourdates/TourdatesForm.vue';
 
+// Import Auth Components
+import SignupForm from '@/components/Auth/SignupForm.vue';
+import LoginForm from '@/components/Auth/LoginForm.vue';
+
+
 // Routes
 export default [
     // Dashboard
     { path: '/', name: 'dashboard', component: Dashboard },
 
     // Create
+    // { path: '/create', name: 'create', component: Create },
     { path: '/create', name: 'create', component: Create },
     
     // Bits
@@ -59,4 +65,7 @@ export default [
     // All
     { path: '/:catchAll(.*)', component: BitsList },
 
+    // Auth
+    { path: '/signup', name: 'signup', component: SignupForm },
+    { path: '/login', name: 'login', component: LoginForm}
   ]

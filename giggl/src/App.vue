@@ -1,58 +1,44 @@
 <template>
-  <v-app>  
+  <v-app>
     <header>
+      <!-- App Bar -->
       <v-app-bar :elevation="2" class="thin-navbar">
-        
-        <!-- Hamburger Menu -->
-        <v-btn icon @click="drawer = !drawer" class="d-md-none burger-btn">
+
+        <!-- Hamburger Menu -->        
+        <v-btn icon @click="drawer = !drawer" class="d-md-none">
           🍔
         </v-btn>
 
         <!-- Home button -->
         <router-link :to="{ name: 'dashboard' }">
-          <v-btn color="white">
-            <i class="fa-solid fa-house small-icon" style="color: #ffffff;"></i>
+          <v-btn color="black">
+            <i class="fa-solid fa-house small-icon"></i>
           </v-btn>
         </router-link>
-
+        
         <v-spacer></v-spacer>
         
-        <!-- Rest of the buttons - Hidden on small screens -->
-        <div class="d-none d-md-flex">
-          <router-link :to="{ name: 'bits' }">
-            <v-btn color="white" text>Bits</v-btn>
-          </router-link>
-          <router-link :to="{ name: 'comedians' }">
-            <v-btn color="white" text>Comedians</v-btn>
-          </router-link>
-          <router-link :to="{ name: 'podcasts' }">
-            <v-btn color="white" text>Podcasts</v-btn>
-          </router-link>
-          <router-link :to="{ name: 'tourdates' }">
-            <v-btn color="white" text>Tour Dates</v-btn>
-          </router-link>
-          <router-link :to="{ name: 'create' }">
-            <v-btn color="white">
-              <i class="fa-solid fa-plus small-icon" style="color: #ffffff;"></i>
-            </v-btn>
-          </router-link>
-        </div>
-
+        <v-text-field
+          v-model="search"
+          append-icon="mdi-magnify"
+          label="Search"
+          single-line
+          hide-details
+          class="search-bar"
+          @keyup.enter="performSearch"
+        ></v-text-field>
         <v-spacer></v-spacer>
-
+        <router-link :to="{ name: 'create' }">
+          <v-btn color="black">
+            <i class="fa-solid fa-user small-icon"></i>
+          </v-btn>
+        </router-link>
       </v-app-bar>
-      
-      <!-- Navigation Drawer for mobile screens -->
-      <v-navigation-drawer v-model="drawer" app temporary>
+
+       <!-- Navigation Drawer for mobile screens -->
+       <v-navigation-drawer v-model="drawer" app temporary>
         <v-list>
-            <v-list-item>
-                <v-list-item-content>
-                    <router-link :to="{ name: 'bits' }">
-                        <v-btn color="white" text class="elevation-0 mt-2">Bits</v-btn>
-                    </router-link>
-                </v-list-item-content>
-            </v-list-item>
-            <v-list-item>
+            <v-list-item :style="{ marginTop: '2rem' }">
                 <v-list-item-content>
                     <router-link :to="{ name: 'comedians' }">
                         <v-btn color="white" text class="elevation-0 mt-2">Comedians</v-btn>
@@ -73,25 +59,18 @@
                     </router-link>
                 </v-list-item-content>
             </v-list-item>
-            <v-list-item>
-                <v-list-item-content>
-                    <router-link :to="{ name: 'create' }">
-                        <v-btn color="white" text class="elevation-0 mt-2">Create</v-btn>
-                    </router-link>
-                </v-list-item-content>
-            </v-list-item>
         </v-list>
       </v-navigation-drawer>
-
     </header>
+
     <div class="content">
       <router-view></router-view>
     </div>
-
-    <!-- Footer Component -->
+    
     <Footer />
   </v-app>
 </template>
+
 
 <script>
 import Footer from '@/components/Footer.vue';
@@ -111,43 +90,36 @@ export default {
 <style scoped>
 
 header {
-  background-color: #f9f9f9;
   padding: 1rem 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-.v-app-bar.thin-navbar {
-  height: 55px;
-  display: flex;
-  align-items: center;
-  background: linear-gradient(to bottom, rgb(118, 82, 196), rgb(88, 62, 176));
   margin-bottom: 20px;
 }
+.v-app-bar.thin-navbar {
+  min-height: 28px; 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 48px;
 
-
-.v-btn {
-  padding: 0px 50px 50px 50px;
 }
+
+.v-app-bar .v-btn {
+  margin: 0 8px;
+  padding: 8px 16px;
+}
+
+.small-icon {
+  font-size: 16px;
+}
+
+.search-bar {
+  max-width: 600px;
+}
+
 
 .burger-btn {
   margin-bottom: 8px;
 }
 
-router-link {
-  text-decoration: none;
-  color: #333;  
-  padding: 0.5em 1em;
-  border-radius: 0.5em;
-  transition: background-color 0.2s;
-}
-
-router-link:hover {
-  background-color: #f5f5f5;
-  
-}
-
-router-link.active {
-  background-color: #e0e0e0;
-}
 
 main {
   padding: 2rem;

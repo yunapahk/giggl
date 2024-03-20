@@ -1,17 +1,30 @@
 <template>
-  <div>
-    <div class="main-carousel">
-      <carousel :items-to-show="1">
-        <slide v-for="image in images" :key="image.src" class="slide">
-          <img :src="image.src" alt="Slide Image" class="slide-image"/>
-        </slide>
-        <template #addons>
-          <navigation />
-          <pagination />
-        </template>
-      </carousel>
-    </div>
+    <!-- Navigation Buttons Below the App Bar -->
+      <div class="navigation-buttons">
+        <router-link :to="{ name: 'comedians' }">
+          <v-btn color="grey" text>All</v-btn>
+        </router-link>
+        <router-link :to="{ name: 'comedians' }">
+          <v-btn color="grey" text>Specials</v-btn>
+        </router-link>
+        <router-link :to="{ name: 'comedians' }">
+          <v-btn color="grey" text>Recently Uploaded</v-btn>
+        </router-link>
+        <router-link :to="{ name: 'comedians' }">
+          <v-btn color="grey" text>Comedians</v-btn>
+        </router-link>
+        <router-link :to="{ name: 'podcasts' }">
+          <v-btn color="grey" text>Podcasts</v-btn>
+        </router-link>
+        <router-link :to="{ name: 'comedians' }">
+          <v-btn color="grey" text>Coming Soon</v-btn>
+        </router-link>
+        <router-link :to="{ name: 'tourdates' }">
+          <v-btn color="grey" text>Tour Dates</v-btn>
+        </router-link>
+      </div>
 
+    <div>
     <!-- Podcasts Carousel Component -->
     <h1>Podcasts</h1>
     <div class="podcasts-carousel">
@@ -240,8 +253,61 @@ h3 {
 ::v-deep .v-img__img--contain {
   object-fit: cover !important;
 }
+router-link > .v-btn {
+  background-color: #f0f0f0; 
+  color: #000; 
+  text-transform: none;
+  box-shadow: none; 
+  border-radius: 4px;
+  margin-right: 8px;
+}
+
+router-link > .v-btn:hover {
+  background-color: #e0e0e0; 
+}
+
+router-link.active > .v-btn, router-link > .v-btn.router-link-exact-active {
+  background-color: #000; 
+  color: #fff; 
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  gap: 8px;
+  margin-top: 4rem;
+  flex-wrap: wrap;
+}
+
+.navigation-buttons > router-link {
+  margin: 0 10px; 
+}
+
+.v-btn {
+  padding: 0.5rem 1rem;
+  border: none; 
+  background-color: white; 
+  color: black;
+  text-transform: none; 
+  border-radius: 4px; 
+
+}
+
+.v-btn:hover {
+  background-color: #f5f5f5; 
+}
 
 @media (max-width: 768px) {
+  .navigation-buttons > router-link {
+    margin: 0 5px;
+  }
+
+  .v-btn {
+    padding: 0.4rem 0.8rem; 
+    font-size: 0.9rem; 
+  }
+
   .slide {
     flex-direction: column;
   }
@@ -250,4 +316,17 @@ h3 {
     margin-bottom: 15px;
   }
 }
+
+@media (max-width: 480px) {
+  .navigation-buttons {
+    flex-direction: column; 
+    align-items: center; 
+  }
+
+  .navigation-buttons > router-link {
+    width: 100%;
+    text-align: center; 
+  }
+}
+
 </style>
