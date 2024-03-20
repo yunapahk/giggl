@@ -30,6 +30,12 @@
         <v-spacer></v-spacer>
         <router-link :to="{ name: 'create' }">
           <v-btn color="black">
+            <i class="fa-solid fa-plus small-icon"></i>
+          </v-btn>
+        </router-link>
+
+        <router-link :to="{ name: 'user' }">
+          <v-btn color="black">
             <i class="fa-solid fa-user small-icon"></i>
           </v-btn>
         </router-link>
