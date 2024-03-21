@@ -26,7 +26,7 @@
 
     <div>
     <!-- Podcasts Carousel Component -->
-    <h1>Podcasts</h1>
+    <!-- <h1>Podcasts</h1> -->
     <div class="podcasts-carousel">
       <carousel :items-to-show="1">
         <slide v-for="(podcastGroup, index) in podcastSlides" :key="index" class="slide">
@@ -50,8 +50,27 @@
 
     <v-spacer></v-spacer>
     
+    <!-- Comedians Carousel Component -->
+    <!-- <h1>Comedians</h1> -->
+    <div class="comedians-carousel">
+      <carousel :items-to-show="1">
+        <slide v-for="(comedianGroup, index) in comedianSlides" :key="index" class="slide">
+          <router-link v-for="comedian in comedianGroup" :key="comedian.id" :to="`/comedians/${comedian.id}`">
+            <div class="card">
+              <v-img class="profile-picture" v-bind:src="comedian.profile_picture" width="150" height="150"></v-img>
+              <h3>{{ comedian.name }}</h3>
+            </div>
+          </router-link>
+        </slide>
+        <template #addons>
+          <navigation />
+          <pagination />
+        </template>
+      </carousel>
+    </div>
+
     <!-- Tour Dates Carousel Component -->
-    <h1>Tour Dates</h1>
+    <!-- <h1>Tour Dates</h1> -->
     <div class="tourdates-carousel">
       <carousel :items-to-show="1">
         <slide v-for="(tourdateGroup, index) in tourdateSlides" :key="index" class="slide">
@@ -71,27 +90,9 @@
       </carousel>
     </div>
   </div>
-
-
-    <!-- Comedians Carousel Component -->
-    <h1>Comedians</h1>
-    <div class="comedians-carousel">
-      <carousel :items-to-show="1">
-        <slide v-for="(comedianGroup, index) in comedianSlides" :key="index" class="slide">
-          <router-link v-for="comedian in comedianGroup" :key="comedian.id" :to="`/comedians/${comedian.id}`">
-            <div class="card">
-              <v-img class="profile-picture" v-bind:src="comedian.profile_picture" width="150" height="150"></v-img>
-              <h3>{{ comedian.name }}</h3>
-            </div>
-          </router-link>
-        </slide>
-        <template #addons>
-          <navigation />
-          <pagination />
-        </template>
-      </carousel>
-    </div>
 </template>
+
+
 
 
 <script>
@@ -183,7 +184,7 @@ export default {
 }
 
 h1 {
-  margin-top: 10rem;
+  margin-top: 8rem;
   margin-bottom: 2rem;
   text-align: center;
 }
@@ -195,12 +196,21 @@ h3 {
   color: black;
 }
 
-.comedians-carousel, .podcasts-carousel {
+ .podcasts-carousel {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   width: 100%;
-  margin-top: 2.5rem;
+  margin-top: 4rem;
+}
+
+.comedians-carousel, .tourdates-carousel {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  margin-top: 8rem;
+  margin-bottom: 5rem;
 }
 
 ::v-deep .carousel {
