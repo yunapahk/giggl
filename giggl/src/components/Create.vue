@@ -1,5 +1,5 @@
 <template>
-  <div class="centered-container">
+  <div class="centered-container" v-if="userProfile && userProfile.is_superuser">
     <h1>Create</h1>
     <!-- Vuetify Container for layout -->
     <v-container fluid>
@@ -30,9 +30,14 @@
       <component :is="selectedForm + 'Form'"></component>
     </div>
   </div>
+    <!-- Optionally, add an else condition to show a message for non-superusers -->
+    <div v-else>
+    <p>You're not admin. Go away</p>
+  </div>
 </template>
 
 <script>
+  import axios from 'axios';
   import BitsForm from '@/components/Bits/BitsForm.vue';
   import ComediansForm from '@/components/Comedians/ComediansForm.vue';
   import PodcastsForm from '@/components/Podcasts/PodcastsForm.vue';
@@ -48,10 +53,27 @@
     data() {
       return {
         selectedForm: '',
-        showForm: false 
+        showForm: false,
+        userProfile: null
       };
     },
+    created() {
+      this.fetchUserProfile(); // Fetch user profile on component creation
+    },
     methods: {
+      fetchUserProfile() {
+        axios.get('/profile/') 
+          .then(response => {
+            this.userProfile = response.data;
+          })
+          .catch(error => {
+            console.error("There was an error fetching the user profile:", error);
+          });
+      },
+      selectForm(formType) {
+        this.selectedForm = formType;
+        this.showForm = true;  
+      },
       toggleForm() {
         this.showForm = !this.showForm;
       },
@@ -64,6 +86,13 @@
 </script>
 
 <style scoped>
+
+p {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 10rem;
+}
+
 h1 {
   margin-bottom: 10px;
   color: grey;

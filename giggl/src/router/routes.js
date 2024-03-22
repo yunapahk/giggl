@@ -73,5 +73,8 @@ export default [
     { path: '/login', name: 'login', component: LoginForm},
 
     // User
-    { path: '/user', name: 'user', component: User }
+    { path: '/user', name: 'user', component: User },
+
+    // Profile
+    { path: '/profile', name: 'profile', component: Create}
   ]
