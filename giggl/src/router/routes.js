@@ -4,8 +4,8 @@ import Dashboard from '@/components/Dashboard.vue';
 // Import Create Component
 import Create from '@/components/Create.vue';
 
-// Import User Component
-import User from '@/components/User.vue';
+// Import AuthForm Component
+// import AuthForm from '@/components/Auth/AuthForm.vue';
 
 // Import Bits Components
 import BitsList from '@/components/Bits/BitsList.vue';
@@ -69,12 +69,7 @@ export default [
     { path: '/:catchAll(.*)', component: BitsList },
 
     // Auth
+    { path: '/login', name: 'login', component: LoginForm },
     { path: '/signup', name: 'signup', component: SignupForm },
-    { path: '/login', name: 'login', component: LoginForm},
-
-    // User
-    { path: '/user', name: 'user', component: User },
-
-    // Profile
-    { path: '/profile', name: 'profile', component: Create}
+    // { path: '/auth', name: 'authform', component: AuthForm }
   ]

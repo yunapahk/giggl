@@ -1,5 +1,5 @@
 <template>
-  <div class="centered-container" v-if="userProfile && userProfile.is_superuser">
+  <div class="centered-container" v-if="isSuperuser">
     <h1>Create</h1>
     <!-- Vuetify Container for layout -->
     <v-container fluid>
@@ -37,39 +37,31 @@
 </template>
 
 <script>
-  import axios from 'axios';
-  import BitsForm from '@/components/Bits/BitsForm.vue';
-  import ComediansForm from '@/components/Comedians/ComediansForm.vue';
-  import PodcastsForm from '@/components/Podcasts/PodcastsForm.vue';
-  import TourdatesForm from '@/components/Tourdates/TourdatesForm.vue';
+import { mapState } from 'vuex';
+import axios from 'axios';
+import BitsForm from '@/components/Bits/BitsForm.vue';
+import ComediansForm from '@/components/Comedians/ComediansForm.vue';
+import PodcastsForm from '@/components/Podcasts/PodcastsForm.vue';
+import TourdatesForm from '@/components/Tourdates/TourdatesForm.vue';
 
   export default {
-    components: {
-      BitsForm,
-      ComediansForm,
-      PodcastsForm,
-      TourdatesForm
-    },
-    data() {
-      return {
-        selectedForm: '',
-        showForm: false,
-        userProfile: null
-      };
-    },
-    created() {
-      this.fetchUserProfile(); // Fetch user profile on component creation
-    },
-    methods: {
-      fetchUserProfile() {
-        axios.get('/profile/') 
-          .then(response => {
-            this.userProfile = response.data;
-          })
-          .catch(error => {
-            console.error("There was an error fetching the user profile:", error);
-          });
+      components: {
+        BitsForm,
+        ComediansForm,
+        PodcastsForm,
+        TourdatesForm
       },
+      data() {
+        return {
+          selectedForm: '',
+          showForm: false,
+          userProfile: null
+        };
+      },
+      computed: {
+        ...mapState(['isSuperuser'])
+      },
+      methods: {
       selectForm(formType) {
         this.selectedForm = formType;
         this.showForm = true;  
@@ -77,10 +69,6 @@
       toggleForm() {
         this.showForm = !this.showForm;
       },
-      selectForm(formType) {
-        this.selectedForm = formType;
-        this.showForm = true;  
-      }
     }
   };
 </script>

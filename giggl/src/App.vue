@@ -28,17 +28,18 @@
           @keyup.enter="performSearch"
         ></v-text-field>
         <v-spacer></v-spacer>
-        <router-link :to="{ name: 'create' }">
+        <router-link :to="{ name: 'create' }" v-if="isSuperuser">
           <v-btn color="black">
             <i class="fa-solid fa-plus small-icon"></i>
           </v-btn>
         </router-link>
 
-        <router-link :to="{ name: 'user' }">
+        <router-link :to="{ name: 'login' }">
           <v-btn color="black">
             <i class="fa-solid fa-user small-icon"></i>
           </v-btn>
         </router-link>
+
       </v-app-bar>
 
        <!-- Navigation Drawer for mobile screens -->
@@ -79,6 +80,7 @@
 
 
 <script>
+import { mapState } from 'vuex';
 import Footer from '@/components/Footer.vue';
 
 export default {
@@ -87,10 +89,20 @@ export default {
   },
   data() {
     return {
-      drawer: false
+      drawer: false,
+      search: '', 
+    }
+  },
+  computed: {
+  ...mapState(['isSuperuser']),
+  },
+  methods: {
+    performSearch() {
+      console.log(this.search);
     }
   }
 }
+
 </script>
 
 <style scoped>
