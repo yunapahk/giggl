@@ -131,6 +131,7 @@ header {
 
 .search-bar {
   max-width: 600px;
+  padding-left: 3.5rem;
 }
 
 

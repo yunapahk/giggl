@@ -1,24 +1,24 @@
 <template>
     <!-- Navigation Buttons Below the App Bar -->
       <div class="navigation-buttons">
-        <router-link :to="{ name: 'comedians' }">
+        <router-link :to="{ name: 'dashboard' }">
           <v-btn color="grey" text>All</v-btn>
         </router-link>
-        <router-link :to="{ name: 'comedians' }">
+        <!-- <router-link :to="{ name: 'comedians' }">
           <v-btn color="grey" text>Specials</v-btn>
-        </router-link>
-        <router-link :to="{ name: 'comedians' }">
+        </router-link> -->
+        <!-- <router-link :to="{ name: 'comedians' }">
           <v-btn color="grey" text>Recently Uploaded</v-btn>
-        </router-link>
+        </router-link> -->
         <router-link :to="{ name: 'comedians' }">
           <v-btn color="grey" text>Comedians</v-btn>
         </router-link>
         <router-link :to="{ name: 'podcasts' }">
           <v-btn color="grey" text>Podcasts</v-btn>
         </router-link>
-        <router-link :to="{ name: 'comedians' }">
+        <!-- <router-link :to="{ name: 'comedians' }">
           <v-btn color="grey" text>Coming Soon</v-btn>
-        </router-link>
+        </router-link> -->
         <router-link :to="{ name: 'tourdates' }">
           <v-btn color="grey" text>Tour Dates</v-btn>
         </router-link>
