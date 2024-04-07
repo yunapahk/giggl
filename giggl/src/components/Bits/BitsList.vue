@@ -93,8 +93,8 @@ export default {
 }
 
 .search {
-  width: 80%;  /* More flexible on different screen sizes */
-  max-width: 600px; /* Ensures it doesn't get too wide */
+  width: 80%; 
+  max-width: 600px; 
   border-radius: 8px;
   height: 3rem;
   display: flex;
@@ -102,15 +102,15 @@ export default {
   justify-content: center;
   padding-top: 1rem;
   border: transparent;
-  margin: 0 auto; /* Center align */
+  margin: 0 auto;
 }
 
 .cards-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
   gap: 20px;
-  margin: 60px 30px; /* Adjusted for symmetry in spacing */
-  padding: 0; /* Adjust or remove as per design needs */
+  margin: 60px 30px; 
+  padding: 0;
 }
 
 .card {
@@ -123,7 +123,7 @@ export default {
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s;
-  width: 100%; /* Ensure card uses all available space */
+  width: 100%; 
 }
 
 .card:hover {
@@ -133,8 +133,8 @@ export default {
 }
 
 .profile-picture, iframe {
-  max-width: 100%; /* Ensure elements do not overflow their containers */
-  height: auto; /* Adjust height automatically */
+  max-width: 100%;
+  height: auto; 
 }
 
 .card-link {
