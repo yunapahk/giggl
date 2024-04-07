@@ -18,7 +18,7 @@
         
         <v-spacer></v-spacer>
         
-        <v-text-field
+        <!-- <v-text-field
           v-model="search"
           append-icon="mdi-magnify"
           label="Search"
@@ -26,8 +26,10 @@
           hide-details
           class="search-bar"
           @keyup.enter="performSearch"
-        ></v-text-field>
+        ></v-text-field> -->
+
         <v-spacer></v-spacer>
+        
         <router-link :to="{ name: 'create' }" v-if="isSuperuser">
           <v-btn color="black">
             <i class="fa-solid fa-plus small-icon"></i>
