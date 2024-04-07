@@ -9,29 +9,25 @@
     <router-link v-for="item in filteredItems" :key="item.id" :to="`/${item.type}/${item.id}`" class="card-link">
       <div class="card">
         <h3>{{ item.name }}</h3>
-        <!-- Display profile picture for comedians or YouTube video for podcasts -->
 
         <template v-if="item.type === 'comedian'">
-  <v-img class="profile-picture" :src="item.profile_picture" width="150" height="150"></v-img>
-</template>
+          <v-img class="profile-picture" :src="item.profile_picture" width="150" height="150"></v-img>
+        </template>
 
-<template v-else-if="item.type === 'podcast'">
-  <!-- Simplified display for podcasts, could include YouTube iframe or other data -->
-  <p style="margin-bottom: 0.5rem; margin-top: 1rem;">{{ item.podcast_title }}</p>
-  <p style="margin-bottom: 1rem;">{{ item.comedians }}</p>
-  <iframe :src="'https://www.youtube.com/embed/' + item.youtube_video_id" width="250" height="140" frameborder="0" style="margin-bottom: 1rem;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</template>
+        <template v-else-if="item.type === 'podcast'">
+          <p style="margin-bottom: 0.5rem; margin-top: 1rem;">{{ item.podcast_title }}</p>
+          <p style="margin-bottom: 1rem;">{{ item.comedians }}</p>
+          <iframe :src="'https://www.youtube.com/embed/' + item.youtube_video_id" width="250" height="140" frameborder="0" style="margin-bottom: 1rem;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </template>
 
-<template v-else-if="item.type === 'tourdate'">
-  <div class="tourdate">
-    <p>{{ item.comedians }}</p>
-    <p>{{ item.tour }}</p>
-    <p>{{ item.dates }}</p>
-    <a :href="item.link" target="_blank" @click.stop>View Link</a>
-  </div>
-</template>
-
-       
+        <template v-else-if="item.type === 'tourdate'">
+          <div class="tourdate">
+            <p>{{ item.comedians }}</p>
+            <p>{{ item.tour }}</p>
+            <p>{{ item.dates }}</p>
+            <a :href="item.link" target="_blank" @click.stop>View Link</a>
+          </div>
+        </template>       
       </div>
     </router-link>
   </div>
