@@ -1,7 +1,7 @@
 <template>
     <!-- Navigation Buttons Below the App Bar -->
       <div class="navigation-buttons">
-        <router-link :to="{ name: 'dashboard' }">
+        <router-link :to="{ name: 'bits' }">
           <v-btn color="grey" text>All</v-btn>
         </router-link>
         <!-- <router-link :to="{ name: 'comedians' }">

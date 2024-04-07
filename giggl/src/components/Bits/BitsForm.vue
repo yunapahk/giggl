@@ -64,6 +64,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 60vh; 
+  margin-top: 8rem;
 }
 
 .form-content {

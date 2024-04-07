@@ -65,14 +65,15 @@ export default {
 <style scoped>
 .search-container {
   display: flex;
-  justify-content: center; 
-  align-items: center;    
-  margin-top: 5rem;  
+  justify-content: center;
+  align-items: center;
+  margin-top: 5rem;
   margin-bottom: 4rem;
 }
 
 .search {
-  width: 40%;
+  width: 80%;
+  max-width: 600px;
   border-radius: 8px;
   height: 3rem;
   display: flex;
@@ -80,19 +81,23 @@ export default {
   justify-content: center;
   padding-top: 1rem;
   border: transparent;
+  margin: 0 auto; /* Center search bar horizontally */
 }
 
 .cards-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); 
-  gap: 20px; 
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
   margin-top: 60px;
-  margin-left: 30px;
+  padding: 0 15px; /* Add padding to prevent content from touching the sides */
+  margin-left: auto; /* Adjust for centering */
+  margin-right: auto; /* Adjust for centering */
+  max-width: calc(100% - 30px); /* Ensure container does not exceed the viewport width */
 }
 
 .card {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: center;
   border: 1px solid #ccc;
   padding: 16px;
@@ -100,21 +105,34 @@ export default {
   cursor: pointer;
   transition: background-color 0.3s;
   justify-content: center;
-  width: 90%;
+  width: 100%;
+}
+
+.card iframe {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
 }
 
 .card:hover {
-  transform: scale(1.03); 
+  transform: scale(1.03);
   background-color: #f5f5f5;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-h3 {
+h3, p {
+  margin: 0 0 10px; /* Ensure text elements have space between them */
   text-align: center;
 }
 
 .card-link {
   text-decoration: none;
   color: inherit;
+}
+
+@media (max-width: 768px) {
+  .search {
+    width: 90%;
+  }
 }
 </style>
